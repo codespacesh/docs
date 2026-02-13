@@ -1,0 +1,108 @@
+---
+title: FAQ
+description: Frequently asked questions about Codespace
+---
+
+## General
+
+<AccordionGroup>
+  <Accordion title="What is Codespace?">
+    Codespace is a managed platform for provisioning and running [Coder](https://coder.com) development environments. Each team gets a dedicated Coder instance with its own infrastructure, accessible at `your-subdomain.codespace.sh`.
+  </Accordion>
+
+  <Accordion title="How is Codespace different from GitHub Codespaces?">
+    Despite the similar name, Codespace and GitHub Codespaces are different products. Codespace provisions dedicated Coder instances with full Coder functionality including custom templates, multiple IDEs, and SSH access. GitHub Codespaces provides single-user dev containers tied to GitHub repositories.
+  </Accordion>
+
+  <Accordion title="Do I need to know Kubernetes to use Codespace?">
+    No. Codespace handles all infrastructure — Kubernetes, databases, TLS certificates, and DNS — automatically. You just create an instance and start using it.
+  </Accordion>
+
+  <Accordion title="How long does provisioning take?">
+    Typically 2–5 minutes. You can watch progress in real time on the Events tab.
+  </Accordion>
+</AccordionGroup>
+
+## Accounts
+
+<AccordionGroup>
+  <Accordion title="How do I get an invite code?">
+    Codespace is in private beta. Invite codes are distributed by existing users or the Codespace team. Contact us if you'd like early access.
+  </Accordion>
+
+  <Accordion title="I didn't receive my verification email">
+    Check your spam/junk folder. You can resend the verification email from the login page. Make sure you entered the correct email during signup.
+  </Accordion>
+
+  <Accordion title="I forgot my password">
+    Go to the [login page](https://codespace.sh/login), click **Forgot password?**, and enter your email. You'll receive a link to set a new password.
+  </Accordion>
+
+  <Accordion title="What happens when I delete my account?">
+    Account deletion has a 30-day grace period. During that time you can cancel. After 30 days, all your instances, workspaces, subscriptions, and data are permanently deleted.
+  </Accordion>
+</AccordionGroup>
+
+## Instances
+
+<AccordionGroup>
+  <Accordion title="Can I change my subdomain after creating an instance?">
+    No. The subdomain is permanent. If you need a different subdomain, delete the instance and create a new one.
+  </Accordion>
+
+  <Accordion title="What happens when provisioning fails?">
+    Check the Events tab for error details. In most cases, clicking **Retry Provisioning** resolves the issue. If it continues to fail, contact support with the event details.
+  </Accordion>
+
+  <Accordion title="Can I have multiple instances?">
+    Yes. You can create as many instances as your subscription allows. Each instance is fully independent with its own team, workspaces, and settings.
+  </Accordion>
+
+  <Accordion title="How do I upgrade Coder?">
+    When a new Coder version is available, an **Upgrade** action appears on your instance detail page. Click it to update — your workspaces and data are preserved.
+  </Accordion>
+</AccordionGroup>
+
+## Team
+
+<AccordionGroup>
+  <Accordion title="How many team members can I have?">
+    Solo plans support 1 user. Team and Custom plans support unlimited members.
+  </Accordion>
+
+  <Accordion title="Can a member be on multiple instances?">
+    Yes. Users can be members of multiple instances, each with independent access.
+  </Accordion>
+
+  <Accordion title="Can I transfer instance ownership?">
+    Not self-service currently. Contact support for ownership transfers.
+  </Accordion>
+</AccordionGroup>
+
+## Workspaces
+
+<AccordionGroup>
+  <Accordion title="Where do I create workspaces?">
+    Workspaces are created from the Coder dashboard at `your-subdomain.codespace.sh`. Open it via the **Open Coder** button on your instance detail page. The Codespace dashboard shows existing workspaces for monitoring.
+  </Accordion>
+
+  <Accordion title="What happens to my data when a workspace is stopped?">
+    Persistent volumes are preserved when a workspace is stopped. Only compute resources (CPU, memory) are released. Your files remain intact.
+  </Accordion>
+
+  <Accordion title="Can I duplicate a workspace?">
+    Yes. From the workspace detail page, click the overflow menu and select **Duplicate**. The new workspace uses the same template and configuration.
+  </Accordion>
+</AccordionGroup>
+
+## Security
+
+<AccordionGroup>
+  <Accordion title="What 2FA methods are supported?">
+    Codespace supports TOTP (Time-based One-Time Password) via authenticator apps like Google Authenticator, Authy, or 1Password. 10 backup codes are provided as a fallback.
+  </Accordion>
+
+  <Accordion title="How do I revoke access from a lost device?">
+    Go to [Settings → Sessions](https://codespace.sh/settings/sessions) and revoke the session for that device. You can also click **Revoke All Other Sessions** to sign out everywhere except your current device.
+  </Accordion>
+</AccordionGroup>

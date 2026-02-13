@@ -1,0 +1,53 @@
+---
+title: Build logs
+description: View and troubleshoot workspace build history
+---
+
+Every time a workspace is created, started, stopped, or updated, Coder runs a **build**. Build logs capture the output of each operation.
+
+## Viewing build history
+
+1. Go to the workspace detail page
+2. Scroll to the **Build History** section
+3. Each build shows:
+   - **Build number** (e.g., #1, #2, #3)
+   - **Transition type** — start, stop, or delete
+   - **Status** — running (green), stopped (gray), failed (red), canceled (red)
+   - **Timestamp** — when the build ran
+
+## Reading build logs
+
+Click a build entry to expand the inline log viewer. Each log line shows:
+
+| Field | Description |
+|-------|-------------|
+| **Timestamp** | When the log line was emitted |
+| **Level** | `info`, `warn`, `error`, or `debug` |
+| **Output** | The log message |
+
+Log levels are color-coded:
+
+- **Error** — red
+- **Warn** — yellow
+- **Info** — blue
+- **Debug** — muted gray
+
+## Downloading logs
+
+Click **Download all build logs** from the overflow menu to save the complete log history as a text file. This is useful for sharing with support or debugging offline.
+
+## Troubleshooting failed builds
+
+If a build fails:
+
+1. Open the failed build's logs
+2. Look for **error**-level messages — these usually indicate the root cause
+3. Common issues:
+   - **Template error** — a syntax or configuration problem in the template
+   - **Resource limit** — workspace exceeds plan quotas
+   - **Image pull failure** — container image not found or not accessible
+   - **Timeout** — build took too long to complete
+
+<Tip>
+  If you see Terraform errors in the logs, they typically include the resource name and error message. Share these details when seeking help.
+</Tip>

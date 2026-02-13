@@ -1,0 +1,46 @@
+---
+title: Delete an instance
+description: Permanently remove an instance and all its resources
+---
+
+Deleting an instance permanently destroys all associated infrastructure and data.
+
+<Warning>
+  This action is irreversible. All workspaces, data, and configuration within the instance are permanently deleted.
+</Warning>
+
+## Who can delete
+
+Only the instance **owner** can delete it. Team members do not have access to the delete action.
+
+## How to delete
+
+1. Go to the instance detail page
+2. Click the **Delete** button in the header
+3. A confirmation dialog appears — review what will be destroyed
+4. Confirm the deletion
+
+## What gets destroyed
+
+When you delete an instance, Codespace removes:
+
+- The Coder Helm release and all its workspaces
+- The PostgreSQL database
+- The Kubernetes namespace
+- The TLS certificate
+- The DNS record
+- All team memberships for this instance
+
+## Status transitions
+
+After confirming deletion:
+
+```
+Running → Deleting → Deleted
+```
+
+The instance enters **Deleting** state while Terraform destroys the resources, then moves to **Deleted** once cleanup is complete.
+
+## Recovering a deleted instance
+
+Deleted instances cannot be recovered. If you need the same subdomain, you can create a new instance with it after the old one is fully deleted.

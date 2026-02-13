@@ -1,0 +1,33 @@
+---
+title: Upgrade Coder version
+description: Update your instance to the latest Coder release
+---
+
+Codespace detects when a newer version of Coder is available for your instance. When an upgrade is available, you'll see an **Upgrade** action on the instance detail page.
+
+## How to upgrade
+
+1. Go to your instance detail page
+2. In the quick actions sidebar, click **Upgrade to latest Coder version**
+3. The instance re-provisions with the new Coder version
+
+## What happens during an upgrade
+
+- Your instance enters the **Provisioning** state temporarily
+- The Coder Helm release is updated to the new version
+- Existing workspaces and data are preserved
+- The process typically takes **2–5 minutes**
+
+<Info>
+  Your instance domain and all workspace data remain intact during the upgrade. Only the Coder application is updated.
+</Info>
+
+## When upgrades are available
+
+Codespace tracks the latest stable Coder release. When your instance is running an older version, the upgrade action appears in the sidebar.
+
+You can see your current Coder version on the instance detail card.
+
+<Note>
+  Only instance owners can trigger upgrades.
+</Note>

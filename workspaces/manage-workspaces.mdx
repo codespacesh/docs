@@ -1,0 +1,80 @@
+---
+title: Manage workspaces
+description: Start, stop, duplicate, and delete workspaces
+---
+
+The workspace detail page in Codespace gives you a unified view of a workspace and its resources.
+
+## Accessing a workspace
+
+1. Go to your instance detail page
+2. Click the **Workspaces** tab
+3. Click a workspace to open its detail page
+
+## Workspace detail page
+
+The detail page shows:
+
+- **Name** — displayed as `owner/workspace-name`
+- **Status badge** — current state
+- **Last used** — relative timestamp
+- **Template** — which template it was created from
+
+## Actions
+
+### Start, stop, and restart
+
+Use the action buttons in the header:
+
+- **Start** — boot the workspace (when stopped)
+- **Stop** — shut down compute but keep storage (when running)
+- **Restart** — stop and start in sequence (when running)
+
+### Update template
+
+If the workspace's template has been updated, an **Update** button appears. Clicking it rebuilds the workspace with the latest template version.
+
+### Duplicate
+
+Create a copy of the workspace:
+
+1. Click the overflow menu (three dots)
+2. Select **Duplicate**
+3. Enter a name for the new workspace
+4. Click **Duplicate**
+
+The new workspace uses the same template and configuration.
+
+### Delete
+
+Permanently remove a workspace:
+
+1. Click the overflow menu
+2. Select **Delete**
+3. Type the workspace name to confirm
+4. Click **Delete Workspace**
+
+<Warning>
+  Deleting a workspace destroys all its data, including persistent volumes. This cannot be undone.
+</Warning>
+
+### Favorite
+
+Click the star icon to mark a workspace as a favorite for quick access.
+
+## Resources
+
+The resources section shows the Kubernetes resources backing the workspace:
+
+- **Pod** — the running container
+- **Agents** — processes providing access to the workspace
+  - Agent name, status, OS, architecture, and version
+  - Available apps (terminal, code-server, custom apps)
+
+Click an app link to open it directly — for example, a web terminal or VS Code in the browser.
+
+## Quick links
+
+- **Open Terminal** — launch a terminal session in the workspace
+- **Workspace Settings** — open Coder's workspace settings page
+- **Schedule Settings** — configure auto-start/stop schedules

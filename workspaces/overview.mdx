@@ -1,0 +1,45 @@
+---
+title: Workspaces overview
+description: Understanding workspaces in Codespace
+---
+
+**Workspaces** are development environments running inside your Coder instance. Each workspace is an isolated container with your tools, code, and configuration.
+
+## Key concepts
+
+| Concept | Description |
+|---------|-------------|
+| **Template** | A blueprint that defines what software and tools are in a workspace |
+| **Owner** | The team member who created the workspace |
+| **Status** | The current state: running, stopped, starting, etc. |
+| **Resources** | Kubernetes resources backing the workspace (pods, volumes) |
+| **Agents** | Processes inside the workspace that provide access (SSH, web terminal) |
+
+## Workspace lifecycle
+
+```
+(Create from template) → Starting → Running → Stopped
+                                       ↕
+                                    Restarting
+```
+
+Workspaces can be started, stopped, and restarted. When stopped, persistent storage is kept but compute resources are released.
+
+## Creating workspaces
+
+Workspaces are created from the **Coder dashboard** (your instance at `subdomain.codespace.sh`), not from the Codespace dashboard. Each instance comes with pre-configured templates.
+
+To create a workspace:
+
+1. Open your Coder dashboard via the **Open Coder** button
+2. Choose a template
+3. Name your workspace and configure parameters
+4. Click **Create Workspace**
+
+## Viewing workspaces from Codespace
+
+The Codespace dashboard shows all workspaces across your instance in the **Workspaces** tab on the instance detail page. From there you can:
+
+- See workspace names, owners, and statuses
+- Click through to the [workspace detail page](/workspaces/manage-workspaces)
+- Start, stop, restart, duplicate, or delete workspaces

@@ -1,0 +1,46 @@
+---
+title: Create an instance
+description: Provision a new Coder deployment
+---
+
+## Before you start
+
+- You need a verified Codespace account
+- Make sure you know what subdomain you want — it can't be changed later
+
+## Steps
+
+1. Go to the [dashboard](https://codespace.sh/dashboard)
+2. Click **New Instance**
+3. Fill in the form:
+   - **Instance name** — a display name (e.g., "Engineering", "Design Team")
+   - **Subdomain** — your instance URL prefix
+4. Click **Create Instance**
+
+## Subdomain format
+
+Your subdomain becomes the domain `subdomain.codespace.sh`. The rules are:
+
+- Lowercase letters (`a-z`), numbers (`0-9`), and hyphens (`-`)
+- Must start and end with a letter or number
+- No spaces or special characters
+- Must be unique across all Codespace instances
+
+**Examples:**
+- `my-team` → `my-team.codespace.sh`
+- `acme-engineering` → `acme-engineering.codespace.sh`
+
+## Provisioning
+
+After creating the instance, provisioning begins automatically. This sets up:
+
+1. Kubernetes namespace
+2. PostgreSQL database
+3. Coder Helm release with your subdomain
+4. TLS certificate and DNS record
+
+The process typically takes **2–5 minutes**. Track progress on the [instance dashboard](/instances/instance-dashboard) in the Events tab.
+
+## What happens if provisioning fails?
+
+Don't worry — you can [retry provisioning](/instances/retry-failed-provision) from the instance detail page. The Events tab will show which step failed and why.

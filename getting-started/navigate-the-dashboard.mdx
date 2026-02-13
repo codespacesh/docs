@@ -1,0 +1,52 @@
+---
+title: Navigate the dashboard
+description: Understanding the Codespace dashboard layout
+---
+
+The dashboard at [codespace.sh/dashboard](https://codespace.sh/dashboard) is your home base for managing instances.
+
+## Instance cards
+
+Each instance appears as a card showing:
+
+- **Name** — the friendly name you chose
+- **Domain** — e.g., `your-subdomain.codespace.sh`
+- **Status badge** — current state of the instance
+- **Coder version** — which version of Coder is deployed
+
+### Status colors
+
+| Color | Status | Meaning |
+|-------|--------|---------|
+| Green | Running | Instance is healthy and accessible |
+| Yellow | Provisioning | Infrastructure is being set up |
+| Red | Failed | Provisioning encountered an error |
+
+## Instance detail page
+
+Click an instance card to open its detail page. From here you can:
+
+- **Open Coder** — launch your Coder dashboard in a new tab
+- **View credentials** — see admin username, email, and password
+- **Browse workspaces** — see all workspaces in the Workspaces tab
+- **Check events** — review provisioning history in the Events tab
+- **Manage settings** — configure team members, GitHub, and more
+
+## Navigation
+
+The top bar includes:
+
+- **codespace.sh** logo — returns to the dashboard
+- **Dashboard** link — instance list
+- **Settings** — account settings (security, sessions, account management)
+- **User menu** — sign out
+
+## Quick actions
+
+On the instance detail page, the sidebar shows context-aware actions:
+
+- **Open Coder Dashboard** — when the instance is running
+- **Settings & Limits** — subscription and resource usage
+- **Upgrade Coder** — when a newer version is available
+- **Retry Provisioning** — when provisioning has failed
+- **Force Reprovision** — re-apply configuration to a running instance

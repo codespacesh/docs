@@ -1,0 +1,59 @@
+---
+title: Provisioning events
+description: Understanding the events timeline
+---
+
+The **Events** tab on the instance detail page shows a timeline of everything that happens during provisioning.
+
+## Event types
+
+Each event represents a step in the provisioning process:
+
+| Event | Description |
+|-------|-------------|
+| **Namespace creation** | Kubernetes namespace is created for the instance |
+| **Database setup** | PostgreSQL database is provisioned via the Zalando operator |
+| **Helm release** | Coder is deployed via Helm chart |
+| **TLS certificate** | Let's Encrypt certificate is issued |
+| **DNS record** | Cloudflare DNS record is created |
+| **Configuration** | Additional settings applied (GitHub, login provider, etc.) |
+
+## Event details
+
+Each event in the timeline shows:
+
+- **Timestamp** — when the event occurred
+- **Status** — completed (green), failed (red), or in progress (yellow)
+- **Message** — description of what happened
+- **Resource badges** — what Terraform resources were affected:
+  - `+` (green) — resource created
+  - `~` (yellow) — resource updated
+  - `-` (red) — resource deleted
+  - `→` (blue) — resource read (data source)
+
+## Reading Terraform output
+
+Events may include Terraform plan output showing which resources will be created or modified. This is useful for understanding exactly what's being provisioned.
+
+Example resource types you might see:
+
+| Resource | Description |
+|----------|-------------|
+| `kubernetes_namespace` | The instance's namespace |
+| `helm_release` | The Coder deployment |
+| `cloudflare_record` | DNS record for the subdomain |
+| `kubernetes_secret` | Configuration secrets |
+
+## Using events for troubleshooting
+
+When provisioning fails:
+
+1. Open the **Events** tab
+2. Find the event with a red (failed) status
+3. Expand it to see the error details
+4. Common patterns:
+   - **Timeout** — resource took too long to become ready
+   - **Conflict** — resource already exists (from a previous attempt)
+   - **Permission** — insufficient permissions for the operation
+
+Share the event details when contacting support for faster resolution.

@@ -1,0 +1,64 @@
+---
+title: Instance statuses
+description: Reference for all instance status values
+---
+
+Instances transition through several states during their lifecycle.
+
+## Status reference
+
+| Status | Badge color | Description |
+|--------|-------------|-------------|
+| **Pending** | Gray | Instance created, waiting for provisioning to begin |
+| **Provisioning** | Yellow | Infrastructure is being set up (namespace, database, Coder, TLS, DNS) |
+| **Running** | Green | Instance is healthy and accessible at `subdomain.codespace.sh` |
+| **Failed** | Red | Provisioning encountered an error — can be retried |
+| **Deleting** | Yellow | Infrastructure teardown is in progress |
+| **Deleted** | Gray | All resources have been destroyed |
+
+## State transitions
+
+```
+                    ┌─────────────┐
+                    │   Pending   │
+                    └──────┬──────┘
+                           │
+                    ┌──────▼──────┐
+               ┌───▶│Provisioning │◀──┐
+               │    └──────┬──────┘   │
+               │           │          │
+               │     ┌─────┴─────┐   │
+               │     │           │   │
+        ┌──────▼──┐ ┌▼────────┐  │   │
+        │ Failed  │ │ Running │  │   │
+        └─────────┘ └────┬────┘  │   │
+                         │       │   │
+                  ┌──────▼──────┐│   │
+                  │  Deleting   ││   │
+                  └──────┬──────┘│   │
+                         │       │   │
+                  ┌──────▼──────┐│   │
+                  │  Deleted    ││   │
+                  └─────────────┘│   │
+                                 │   │
+        Retry ───────────────────┘   │
+        Upgrade / Reprovision ───────┘
+```
+
+## What triggers transitions
+
+| Transition | Trigger |
+|-----------|---------|
+| Pending → Provisioning | Automatic — begins when instance is created |
+| Provisioning → Running | All Terraform resources applied successfully |
+| Provisioning → Failed | A provisioning step encountered an error |
+| Failed → Provisioning | User clicks **Retry Provisioning** |
+| Running → Provisioning | User clicks **Upgrade** or **Force Reprovision** |
+| Running → Deleting | User clicks **Delete** and confirms |
+| Deleting → Deleted | All resources destroyed |
+
+## Dashboard behavior
+
+- The dashboard polls every 5 seconds for status updates
+- Status badges update automatically — no page refresh needed
+- The Events tab shows detailed progress during provisioning

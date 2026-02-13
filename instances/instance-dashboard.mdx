@@ -1,0 +1,68 @@
+---
+title: Instance dashboard
+description: Understanding the instance detail page
+---
+
+The instance dashboard shows everything about a specific instance. Access it by clicking an instance card on the main dashboard.
+
+## Header
+
+The top of the page shows:
+
+- **Instance name** and status badge
+- **Open Coder** button — opens your Coder dashboard at `subdomain.codespace.sh` (visible when running)
+- **Delete** button — owner only, with confirmation dialog
+
+## Instance details card
+
+| Field | Description |
+|-------|-------------|
+| **Domain** | Your instance URL (`subdomain.codespace.sh`) |
+| **Coder version** | Currently deployed version |
+| **Created** | When the instance was created |
+| **Last updated** | Most recent status change |
+
+## Admin credentials
+
+When your instance is first provisioned, Codespace generates admin credentials for the Coder dashboard:
+
+- **Username** — the admin account name
+- **Email** — the admin email address
+- **Password** — the initial admin password
+
+Each field has a **copy** button. The password is hidden by default — click the eye icon to reveal it.
+
+<Warning>
+  Save these credentials somewhere safe. You'll need them to sign in to Coder for the first time.
+</Warning>
+
+## Activity tabs
+
+### Workspaces tab
+
+Lists all workspaces running in this instance. Each entry shows:
+
+- Workspace name and owner
+- Current status (running, stopped, etc.)
+- Click to view the [workspace detail page](/workspaces/manage-workspaces)
+
+### Events tab
+
+A timeline of provisioning events. Each event shows:
+
+- Timestamp and event type
+- Status indicator (green = completed, red = failed, yellow = in progress)
+- Expandable details with Terraform resource information
+- Resource badges showing what was created (+), updated (~), or deleted (-)
+
+## Quick actions sidebar
+
+Context-aware actions based on instance state:
+
+| Action | When available |
+|--------|---------------|
+| **Open Coder Dashboard** | Instance is running |
+| **Settings & Limits** | Always |
+| **Upgrade Coder** | New version available |
+| **Force Reprovision** | Instance is running |
+| **Retry Provisioning** | Provisioning failed |

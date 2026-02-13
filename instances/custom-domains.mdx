@@ -1,0 +1,41 @@
+---
+title: Custom domains
+description: Use your own domain with a Codespace instance
+---
+
+By default, every instance gets a domain at `your-subdomain.codespace.sh`. Custom domain support allows you to use your own domain instead.
+
+<Info>
+  Custom domains are available on **Team** and **Custom** plans. See [Subscription plans](/reference/subscription-plans) for details.
+</Info>
+
+## How it works
+
+With a custom domain configured, your Coder instance is accessible at your own domain (e.g., `dev.yourcompany.com`) instead of the default `subdomain.codespace.sh`.
+
+## DNS configuration
+
+To use a custom domain, add a **CNAME record** in your DNS provider:
+
+| Record type | Name | Value |
+|-------------|------|-------|
+| CNAME | `dev` (your subdomain) | `your-subdomain.codespace.sh` |
+
+The TLS certificate is automatically provisioned for your custom domain once DNS propagation is complete.
+
+<Note>
+  DNS propagation can take up to 48 hours, though it typically completes within a few minutes to a few hours.
+</Note>
+
+## Wildcard subdomains
+
+Coder uses wildcard subdomains for workspace apps (e.g., `app--workspace.dev.yourcompany.com`). When configuring a custom domain, you'll also need a wildcard CNAME:
+
+| Record type | Name | Value |
+|-------------|------|-------|
+| CNAME | `dev` | `your-subdomain.codespace.sh` |
+| CNAME | `*.dev` | `your-subdomain.codespace.sh` |
+
+## After configuring DNS
+
+Once DNS is set up, go to your instance settings and trigger a **Reconcile** to apply the custom domain configuration. Your instance will re-provision with the new domain.

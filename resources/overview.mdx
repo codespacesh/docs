@@ -1,0 +1,60 @@
+---
+title: Resources overview
+description: Understanding resources in Codespace
+---
+
+A **resource** is a fully managed service provisioned by Codespace within your organization. Each resource has its own infrastructure, domain, and configuration.
+
+## Resource types
+
+Codespace supports the following resource types:
+
+| Type | Description |
+|------|-------------|
+| **Coder** | A fully isolated Coder deployment with its own infrastructure, domain, and organization |
+| **Codewire Relay** | A WireGuard relay service for AI agent connectivity |
+
+## What's inside a Coder resource
+
+When you create a Coder resource, Codespace provisions:
+
+| Component | Description |
+|-----------|-------------|
+| **Isolated environment** | Dedicated infrastructure for your Coder deployment |
+| **Database** | Dedicated database for Coder state |
+| **Coder application** | The Coder platform itself |
+| **TLS certificate** | Automatic HTTPS |
+| **DNS record** | `your-subdomain.codespace.sh` |
+
+## Resource lifecycle
+
+Resources progress through these states:
+
+```
+Pending → Provisioning → Running
+                       ↘ Failed → (Retry) → Provisioning → Running
+Running → Deleting → Deleted
+```
+
+See [Resource statuses](/reference/resource-statuses) for details on each state.
+
+## Owner vs member access
+
+| Action | Owner | Member |
+|--------|-------|--------|
+| Create workspaces | Yes | Yes |
+| View resource details | Yes | Yes |
+| Manage organization members | Yes | No |
+| Configure settings | Yes | No |
+| Delete resource | Yes | No |
+| Upgrade Coder version | Yes | No |
+
+## Limits
+
+Each resource has limits based on your [subscription plan](/reference/subscription-plans):
+
+- **Workspaces per user** — how many workspaces each organization member can create
+- **Total workspaces** — maximum across all members
+- **CPU hours** — compute time per billing period
+- **Memory** — RAM allocation per billing period
+- **Storage** — disk space allocation

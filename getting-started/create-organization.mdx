@@ -1,0 +1,44 @@
+---
+title: Create an Organization
+description: Set up your first organization to group resources and team members
+---
+
+Organizations are the top-level container in Codespace. Each organization has its own members, roles, billing, and resources.
+
+## Create your first organization
+
+1. From the [dashboard](https://codespace.sh/dashboard), click **New Organization**
+2. Enter an **organization name** (e.g., "Acme Engineering")
+3. Choose a **slug** — this is used in URLs and must be unique
+4. Click **Create**
+
+You're now the **owner** of this organization and can start adding resources and inviting members.
+
+## What's in an organization?
+
+- **Resources** — Coder deployments, Codewire Relays, and other provisioned services
+- **Members** — Team members with role-based access (owner, admin, member)
+- **Billing** — Per-resource subscriptions and usage tracking
+
+## Roles
+
+| Role | Manage members | Add/delete resources | Change settings | View resources |
+|------|:---:|:---:|:---:|:---:|
+| **Owner** | Yes | Yes | Yes | Yes |
+| **Admin** | Yes | Yes | Yes | Yes |
+| **Member** | No | No | No | Yes |
+
+<Info>
+  The user who creates an organization is automatically the owner. Ownership can be transferred later.
+</Info>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Add a resource" icon="plus" href="/getting-started/create-your-first-resource">
+    Provision your first Coder deployment.
+  </Card>
+  <Card title="Invite members" icon="user-plus" href="/organizations/invite-members">
+    Add your team to the organization.
+  </Card>
+</CardGroup>

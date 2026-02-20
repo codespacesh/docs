@@ -1,20 +1,21 @@
 ---
-title: Instance statuses
-description: Reference for all instance status values
+title: Resource statuses
+description: Reference for all resource status values
 ---
 
-Instances transition through several states during their lifecycle.
+Resources transition through several states during their lifecycle.
 
 ## Status reference
 
 | Status | Badge color | Description |
 |--------|-------------|-------------|
-| **Pending** | Gray | Instance created, waiting for provisioning to begin |
+| **Pending** | Gray | Resource created, waiting for provisioning to begin |
 | **Provisioning** | Yellow | Infrastructure is being set up (namespace, database, Coder, TLS, DNS) |
-| **Running** | Green | Instance is healthy and accessible at `subdomain.codespace.sh` |
+| **Running** | Green | Resource is healthy and accessible at `subdomain.codespace.sh` |
 | **Failed** | Red | Provisioning encountered an error — can be retried |
+| **Suspended** | Orange | Resource suspended due to billing (trial expired or subscription cancelled). Data is preserved but the service is inaccessible. Resume by activating a subscription. |
 | **Deleting** | Yellow | Infrastructure teardown is in progress |
-| **Deleted** | Gray | All resources have been destroyed |
+| **Deleted** | Gray | All infrastructure has been destroyed |
 
 ## State transitions
 
@@ -31,29 +32,31 @@ Instances transition through several states during their lifecycle.
                │     │           │   │
         ┌──────▼──┐ ┌▼────────┐  │   │
         │ Failed  │ │ Running │  │   │
-        └─────────┘ └────┬────┘  │   │
-                         │       │   │
-                  ┌──────▼──────┐│   │
-                  │  Deleting   ││   │
-                  └──────┬──────┘│   │
-                         │       │   │
-                  ┌──────▼──────┐│   │
-                  │  Deleted    ││   │
-                  └─────────────┘│   │
-                                 │   │
-        Retry ───────────────────┘   │
-        Upgrade / Reprovision ───────┘
+        └─────────┘ └──┬───┬──┘  │   │
+                       │   │     │   │
+                ┌──────▼┐ ┌▼─────────┐
+                │Suspend│ │ Deleting ││
+                │  ed   │ └──────┬───┘│
+                └───────┘        │    │
+                          ┌──────▼──┐ │
+                          │ Deleted │ │
+                          └─────────┘ │
+                                      │
+        Retry ────────────────────────┘
+        Upgrade / Reprovision ────────┘
 ```
 
 ## What triggers transitions
 
 | Transition | Trigger |
 |-----------|---------|
-| Pending → Provisioning | Automatic — begins when instance is created |
-| Provisioning → Running | All Terraform resources applied successfully |
+| Pending → Provisioning | Automatic — begins when resource is created |
+| Provisioning → Running | All infrastructure provisioned successfully |
 | Provisioning → Failed | A provisioning step encountered an error |
 | Failed → Provisioning | User clicks **Retry Provisioning** |
 | Running → Provisioning | User clicks **Upgrade** or **Force Reprovision** |
+| Running → Suspended | Trial expired or subscription cancelled (automatic) |
+| Suspended → Running | Subscription activated or resumed (automatic via reconciler) |
 | Running → Deleting | User clicks **Delete** and confirms |
 | Deleting → Deleted | All resources destroyed |
 

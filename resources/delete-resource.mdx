@@ -1,0 +1,46 @@
+---
+title: Delete a resource
+description: Permanently remove a resource and all its infrastructure
+---
+
+Deleting a resource permanently destroys all associated infrastructure and data.
+
+<Warning>
+  This action is irreversible. All workspaces, data, and configuration within the resource are permanently deleted.
+</Warning>
+
+## Who can delete
+
+Only organization **owners** can delete a resource. Organization members do not have access to the delete action.
+
+## How to delete
+
+1. Go to the resource detail page
+2. Click the **Delete** button in the header
+3. A confirmation dialog appears — review what will be destroyed
+4. Confirm the deletion
+
+## What gets destroyed
+
+When you delete a resource, Codespace removes:
+
+- The Coder application and all its workspaces
+- The database
+- The isolated environment
+- The TLS certificate
+- The DNS record
+- All organization memberships for this resource
+
+## Status transitions
+
+After confirming deletion:
+
+```
+Running → Deleting → Deleted
+```
+
+The resource enters **Deleting** state while the infrastructure is torn down, then moves to **Deleted** once cleanup is complete.
+
+## Recovering a deleted resource
+
+Deleted resources cannot be recovered. If you need the same subdomain, you can create a new resource with it after the old one is fully deleted.

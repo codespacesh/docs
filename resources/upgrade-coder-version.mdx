@@ -1,0 +1,33 @@
+---
+title: Upgrade Coder version
+description: Update your Coder instance to the latest release
+---
+
+Codespace detects when a newer version of Coder is available for your Coder instance. When an upgrade is available, you'll see an **Upgrade** action on the resource detail page.
+
+## How to upgrade
+
+1. Go to your resource detail page
+2. In the quick actions sidebar, click **Upgrade to latest Coder version**
+3. The resource re-provisions with the new Coder version
+
+## What happens during an upgrade
+
+- Your resource enters the **Provisioning** state temporarily
+- The Coder application is updated to the new version
+- Existing workspaces and data are preserved
+- The process typically takes **2-5 minutes**
+
+<Info>
+  Your resource domain and all workspace data remain intact during the upgrade. Only the Coder application is updated.
+</Info>
+
+## When upgrades are available
+
+Codespace tracks the latest stable Coder release. When your Coder instance is running an older version, the upgrade action appears in the sidebar.
+
+You can see your current Coder version on the Instance Details card.
+
+<Note>
+  Only organization owners can trigger upgrades.
+</Note>

@@ -10,9 +10,9 @@ description: Understanding workspaces in Codespace
 | Concept | Description |
 |---------|-------------|
 | **Template** | A blueprint that defines what software and tools are in a workspace |
-| **Owner** | The team member who created the workspace |
+| **Owner** | The organization member who created the workspace |
 | **Status** | The current state: running, stopped, starting, etc. |
-| **Resources** | Kubernetes resources backing the workspace (pods, volumes) |
+| **Resources** | Infrastructure backing the workspace (compute, storage) |
 | **Agents** | Processes inside the workspace that provide access (SSH, web terminal) |
 
 ## Workspace lifecycle
@@ -38,7 +38,7 @@ To create a workspace:
 
 ## Viewing workspaces from Codespace
 
-The Codespace dashboard shows all workspaces across your instance in the **Workspaces** tab on the instance detail page. From there you can:
+The Codespace dashboard shows all workspaces across your Coder instance in the **Workspaces** tab on the resource detail page. From there you can:
 
 - See workspace names, owners, and statuses
 - Click through to the [workspace detail page](/workspaces/manage-workspaces)

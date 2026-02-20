@@ -1,6 +1,6 @@
 ---
 title: Custom login provider
-description: Configure a custom OAuth/OIDC provider for your instance
+description: Configure a custom OAuth/OIDC provider for your Coder instance
 ---
 
 By default, your Coder instance uses **Codespace SSO** — users sign in through Codespace and are automatically authenticated with Coder. You can override this with a custom OAuth/OIDC provider.
@@ -21,7 +21,7 @@ If your organization uses an identity provider like **Okta**, **Auth0**, **Azure
 
 ### Configure a custom provider
 
-1. Go to your instance **Settings**
+1. Go to your resource **Settings**
 2. Scroll to **Advanced Settings** → **Login Provider Override**
 3. Select **Custom OAuth**
 4. Enter:
@@ -32,7 +32,7 @@ If your organization uses an identity provider like **Okta**, **Auth0**, **Azure
 6. Click **Reconcile Configuration** to apply the changes
 
 <Warning>
-  After saving, you must click **Reconcile Configuration** in Advanced Settings for the change to take effect. This re-provisions your instance with the new login settings.
+  After saving, you must click **Reconcile Configuration** in Advanced Settings for the change to take effect. This re-provisions your resource with the new login settings.
 </Warning>
 
 ## Switching back to Codespace SSO
@@ -44,6 +44,6 @@ If your organization uses an identity provider like **Okta**, **Auth0**, **Azure
 
 ## Important notes
 
-- The reconcile process takes 1–2 minutes while your instance is re-provisioned
+- The reconcile process takes 1–2 minutes while your resource is re-provisioned
 - Existing Coder sessions may be invalidated when switching providers
-- Make sure your OIDC provider is configured to allow redirects to your instance domain
+- Make sure your OIDC provider is configured to allow redirects to your resource domain

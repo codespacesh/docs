@@ -3,50 +3,57 @@ title: Navigate the dashboard
 description: Understanding the Codespace dashboard layout
 ---
 
-The dashboard at [codespace.sh/dashboard](https://codespace.sh/dashboard) is your home base for managing instances.
+The dashboard at [codespace.sh/dashboard](https://codespace.sh/dashboard) is your home base for managing organizations and resources.
 
-## Instance cards
+## Organization view
 
-Each instance appears as a card showing:
+The dashboard shows your organizations. Select an organization to see its resources, members, and billing. Use the **organization switcher** in the sidebar to move between organizations.
 
-- **Name** — the friendly name you chose
-- **Domain** — e.g., `your-subdomain.codespace.sh`
-- **Status badge** — current state of the instance
-- **Coder version** — which version of Coder is deployed
+## Resource cards
+
+Each resource appears as a card showing:
+
+- **Name** — the slug you chose
+- **Domain** — e.g., `your-slug.codespace.sh`
+- **Status badge** — current state of the resource
+- **Coder version** — which version of Coder is deployed (for Coder resources)
 
 ### Status colors
 
 | Color | Status | Meaning |
 |-------|--------|---------|
-| Green | Running | Instance is healthy and accessible |
+| Green | Running | Resource is healthy and accessible |
 | Yellow | Provisioning | Infrastructure is being set up |
 | Red | Failed | Provisioning encountered an error |
 
-## Instance detail page
+## Resource detail page
 
-Click an instance card to open its detail page. From here you can:
+Click a resource card to open its detail page. From here you can:
 
 - **Open Coder** — launch your Coder dashboard in a new tab
 - **View credentials** — see admin username, email, and password
 - **Browse workspaces** — see all workspaces in the Workspaces tab
 - **Check events** — review provisioning history in the Events tab
-- **Manage settings** — configure team members, GitHub, and more
+- **Manage settings** — configure GitHub integration and more
 
 ## Navigation
 
-The top bar includes:
+The top bar and sidebar include:
 
 - **codespace.sh** logo — returns to the dashboard
-- **Dashboard** link — instance list
+- **Dashboard** link — organization and resource list
+- **Members** — manage organization members and invitations
+- **Billing** — view subscription and usage for the organization
+- **Add Resource** — provision a new Coder deployment or Codewire Relay
 - **Settings** — account settings (security, sessions, account management)
 - **User menu** — sign out
 
 ## Quick actions
 
-On the instance detail page, the sidebar shows context-aware actions:
+On the resource detail page, the sidebar shows context-aware actions:
 
-- **Open Coder Dashboard** — when the instance is running
+- **Open Coder Dashboard** — when the Coder instance is running
 - **Settings & Limits** — subscription and resource usage
 - **Upgrade Coder** — when a newer version is available
 - **Retry Provisioning** — when provisioning has failed
-- **Force Reprovision** — re-apply configuration to a running instance
+- **Force Reprovision** — re-apply configuration to a running resource

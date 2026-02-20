@@ -1,47 +1,47 @@
 ---
 title: What is Codespace?
-description: Managed Coder development environments for teams
+description: Managed Coder development environments and infrastructure for teams
 ---
 
-Codespace is a platform that provisions and manages [Coder](https://coder.com) development environments for you. Each team gets a dedicated Coder instance with its own infrastructure — no Kubernetes expertise required.
+Codespace is a platform that provisions and manages development infrastructure for your team. Create **organizations**, invite members, and provision **resources** — dedicated [Coder](https://coder.com) instances, Codewire relays, and more — all without Kubernetes expertise.
 
 ## Key concepts
 
 <CardGroup cols={3}>
-  <Card title="Instances" icon="server">
-    A dedicated Coder deployment with its own database, namespace, TLS certificate, and domain at `your-name.codespace.sh`.
+  <Card title="Organizations" icon="building">
+    Group your team and resources together. Each organization has its own members, roles (owner, admin, member), billing, and resource inventory.
+  </Card>
+  <Card title="Resources" icon="server">
+    Provisioned services within an organization. Coder deployments get their own database, namespace, TLS certificate, and domain at `your-name.codespace.sh`. Codewire Relays provide WireGuard connectivity for AI agents.
   </Card>
   <Card title="Workspaces" icon="code">
-    Development environments inside your instance, created from templates. Each workspace is an isolated container with your tools and code.
-  </Card>
-  <Card title="Teams" icon="users">
-    Invite team members to your instance. Owners manage settings and billing; members create and use workspaces.
+    Development environments inside a Coder resource, created from templates. Each workspace is an isolated container with your tools and code.
   </Card>
 </CardGroup>
 
 ## How it works
 
 1. **Sign up** with an invite code and create your account
-2. **Create an instance** — pick a subdomain and Codespace provisions everything automatically
-3. **Open Coder** — your instance is live at `your-name.codespace.sh` with admin credentials ready
-4. **Create workspaces** — use templates to spin up dev environments in seconds
-5. **Invite your team** — share the instance with collaborators
+2. **Create an organization** — name it and invite your team
+3. **Add a resource** — pick a type (Coder or Codewire Relay), choose a plan, and Codespace provisions everything automatically
+4. **Open Coder** — your Coder resource is live at `your-name.codespace.sh` with admin credentials ready
+5. **Create workspaces** — use templates to spin up dev environments in seconds
 
 ## How is this different from self-hosting Coder?
 
 | | Codespace | Self-hosted Coder |
 |---|---|---|
-| **Setup** | Create an instance in 2 minutes | Configure Kubernetes, Helm, PostgreSQL, TLS, DNS |
+| **Setup** | Add a resource in 2 minutes | Configure infrastructure, databases, TLS, DNS yourself |
 | **Maintenance** | Automatic upgrades, monitoring, backups | You manage everything |
-| **Infrastructure** | Dedicated namespace and database per instance | You provision and manage your own cluster |
-| **Team management** | Built-in invitations and roles | Configure your own identity provider |
-| **Billing** | Usage-based plans with included resources | License cost + your infrastructure costs |
+| **Infrastructure** | Dedicated namespace and database per resource | You provision and manage your own cluster |
+| **Team management** | Built-in organizations with invitations and roles | Configure your own identity provider |
+| **Billing** | Per-resource plans with usage tracking | License cost + your infrastructure costs |
 
 ## Next steps
 
 <CardGroup cols={2}>
   <Card title="Quickstart" icon="rocket" href="/quickstart">
-    Get your first instance running in 5 minutes.
+    Get your first resource running in 5 minutes.
   </Card>
   <Card title="Create an account" icon="user-plus" href="/getting-started/create-account">
     Sign up and verify your email.

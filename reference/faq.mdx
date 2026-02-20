@@ -7,19 +7,19 @@ description: Frequently asked questions about Codespace
 
 <AccordionGroup>
   <Accordion title="What is Codespace?">
-    Codespace is a managed platform for provisioning and running [Coder](https://coder.com) development environments. Each team gets a dedicated Coder instance with its own infrastructure, accessible at `your-subdomain.codespace.sh`.
+    Codespace is a managed platform for provisioning and running [Coder](https://coder.com) development environments. Each organization gets dedicated Coder resources with their own infrastructure, accessible at `your-subdomain.codespace.sh`.
   </Accordion>
 
   <Accordion title="How is Codespace different from GitHub Codespaces?">
-    Despite the similar name, Codespace and GitHub Codespaces are different products. Codespace provisions dedicated Coder instances with full Coder functionality including custom templates, multiple IDEs, and SSH access. GitHub Codespaces provides single-user dev containers tied to GitHub repositories.
+    Despite the similar name, Codespace and GitHub Codespaces are different products. Codespace provisions dedicated Coder resources with full Coder functionality including custom templates, multiple IDEs, and SSH access. GitHub Codespaces provides single-user dev containers tied to GitHub repositories.
   </Accordion>
 
   <Accordion title="Do I need to know Kubernetes to use Codespace?">
-    No. Codespace handles all infrastructure — Kubernetes, databases, TLS certificates, and DNS — automatically. You just create an instance and start using it.
+    No. Codespace handles all infrastructure — Kubernetes, databases, TLS certificates, and DNS — automatically. You just create a resource and start using it.
   </Accordion>
 
   <Accordion title="How long does provisioning take?">
-    Typically 2–5 minutes. You can watch progress in real time on the Events tab.
+    Typically 2-5 minutes. You can watch progress in real time on the Events tab.
   </Accordion>
 </AccordionGroup>
 
@@ -39,43 +39,71 @@ description: Frequently asked questions about Codespace
   </Accordion>
 
   <Accordion title="What happens when I delete my account?">
-    Account deletion has a 30-day grace period. During that time you can cancel. After 30 days, all your instances, workspaces, subscriptions, and data are permanently deleted.
+    Account deletion has a 30-day grace period. During that time you can cancel. After 30 days, all your resources, workspaces, subscriptions, and data are permanently deleted.
   </Accordion>
 </AccordionGroup>
 
-## Instances
+## Organizations
 
 <AccordionGroup>
-  <Accordion title="Can I change my subdomain after creating an instance?">
-    No. The subdomain is permanent. If you need a different subdomain, delete the instance and create a new one.
+  <Accordion title="How do I create an organization?">
+    Navigate to the dashboard and click **New Organization**. Enter a name and slug, then click **Create**.
+  </Accordion>
+
+  <Accordion title="Can I belong to multiple organizations?">
+    Yes. You can be a member of multiple organizations with different roles in each.
+  </Accordion>
+
+  <Accordion title="How many members can I have?">
+    There is no limit on organization members. Seat pricing is $18 per developer per month.
+  </Accordion>
+
+  <Accordion title="Can I transfer organization ownership?">
+    Not self-service currently. Contact support for ownership transfers.
+  </Accordion>
+</AccordionGroup>
+
+## Resources
+
+<AccordionGroup>
+  <Accordion title="Can I change my subdomain after creating a resource?">
+    No. The subdomain is permanent. If you need a different subdomain, delete the resource and create a new one.
   </Accordion>
 
   <Accordion title="What happens when provisioning fails?">
     Check the Events tab for error details. In most cases, clicking **Retry Provisioning** resolves the issue. If it continues to fail, contact support with the event details.
   </Accordion>
 
-  <Accordion title="Can I have multiple instances?">
-    Yes. You can create as many instances as your subscription allows. Each instance is fully independent with its own team, workspaces, and settings.
+  <Accordion title="Can I have multiple resources?">
+    Yes. You can create as many resources as needed within an organization. Each resource is fully independent with its own infrastructure and settings.
   </Accordion>
 
   <Accordion title="How do I upgrade Coder?">
-    When a new Coder version is available, an **Upgrade** action appears on your instance detail page. Click it to update — your workspaces and data are preserved.
+    When a new Coder version is available, an **Upgrade** action appears on your resource detail page. Click it to update — your workspaces and data are preserved.
+  </Accordion>
+
+  <Accordion title="What is a Codewire Relay?">
+    A WireGuard relay service for AI agent connectivity, provisioned as a resource within your organization. It includes message routing and an authentication token.
+  </Accordion>
+
+  <Accordion title="What is Force Reprovision?">
+    A recovery tool that rebuilds the Coder deployment for a stuck resource while preserving all data (workspaces, templates, users, database). Use it when a resource shows Running but the Coder dashboard is inaccessible.
   </Accordion>
 </AccordionGroup>
 
-## Team
+## Billing
 
 <AccordionGroup>
-  <Accordion title="How many team members can I have?">
-    Solo plans support 1 user. Team and Custom plans support unlimited members.
+  <Accordion title="What happens when my trial expires?">
+    Your resource is suspended (scaled to zero). Add a payment method and subscribe to resume. Your data is preserved.
   </Accordion>
 
-  <Accordion title="Can a member be on multiple instances?">
-    Yes. Users can be members of multiple instances, each with independent access.
+  <Accordion title="How does per-resource billing work?">
+    Each resource in your organization has its own subscription and plan. Coder resources have Starter, Pro, Team, and Enterprise plans. Codewire Relays use the Relay plan at $5/month.
   </Accordion>
 
-  <Accordion title="Can I transfer instance ownership?">
-    Not self-service currently. Contact support for ownership transfers.
+  <Accordion title="How are overages calculated?">
+    Usage is tracked in 5-minute intervals and aggregated monthly. Overages are billed at: CPU $0.03/core-hour, Memory $0.01/GB-hour, Disk $0.05/GB-hour.
   </Accordion>
 </AccordionGroup>
 
@@ -83,7 +111,7 @@ description: Frequently asked questions about Codespace
 
 <AccordionGroup>
   <Accordion title="Where do I create workspaces?">
-    Workspaces are created from the Coder dashboard at `your-subdomain.codespace.sh`. Open it via the **Open Coder** button on your instance detail page. The Codespace dashboard shows existing workspaces for monitoring.
+    Workspaces are created from the Coder dashboard at `your-subdomain.codespace.sh`. Open it via the **Open Coder** button on your resource detail page. The Codespace dashboard shows existing workspaces for monitoring.
   </Accordion>
 
   <Accordion title="What happens to my data when a workspace is stopped?">

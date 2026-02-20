@@ -1,0 +1,51 @@
+---
+title: Codewire Relay
+description: WireGuard relay for AI agent connectivity
+---
+
+A Codewire Relay is a resource type that provisions a WireGuard relay service for AI agent connectivity within your organization.
+
+## What gets provisioned
+
+When you create a Codewire Relay resource, Codespace provisions:
+
+- A dedicated **isolated environment**
+- A **message routing service**
+- An **authentication token** for secure connections
+
+## Pricing
+
+Codewire Relay resources use the **Relay** plan at **$5/month**.
+
+## Create a Codewire Relay
+
+1. Navigate to your organization
+2. Click **Add Resource**
+3. Select **Codewire Relay** as the resource type
+4. Choose the **Relay** plan
+5. Enter a **slug** for the resource
+6. Click **Create Resource**
+
+Provisioning typically completes in under a minute.
+
+## Connection details
+
+Once your relay is running, connection details are displayed on the resource detail page:
+
+- **Relay endpoint** — the address your agents connect to
+- **Auth token** — used to authenticate agent connections
+
+<Info>
+  Connection details are only visible to organization owners and admins.
+</Info>
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Create a resource" icon="plus" href="/resources/create-resource">
+    Step-by-step resource creation guide.
+  </Card>
+  <Card title="Resource dashboard" icon="gauge" href="/resources/resource-dashboard">
+    Understanding the resource detail page.
+  </Card>
+</CardGroup>

@@ -3,7 +3,7 @@ title: GitHub integration
 description: Connect GitHub for authentication and repository access
 ---
 
-Connect your instance to GitHub so users can authenticate with their GitHub account and access private repositories from workspaces.
+Connect your resource to GitHub so users can authenticate with their GitHub account and access private repositories from workspaces.
 
 ## Setup methods
 
@@ -13,9 +13,9 @@ There are two ways to configure GitHub integration:
 
 This creates a GitHub App automatically with the correct permissions.
 
-1. Go to your instance **Settings**
+1. Go to your resource **Settings**
 2. Under **External Authentication**, click **Connect with GitHub**
-3. Choose your GitHub instance:
+3. Choose your GitHub provider:
    - **github.com** for standard GitHub
    - **GitHub Enterprise** — enter your enterprise URL
 4. You'll be redirected to GitHub to authorize the app creation
@@ -27,7 +27,7 @@ The integration is configured automatically.
 
 If you prefer to configure an existing GitHub OAuth App:
 
-1. Go to your instance **Settings**
+1. Go to your resource **Settings**
 2. Under **External Authentication**, switch to **Advanced**
 3. Copy the **Callback URL** shown — you'll need this in GitHub
 4. In GitHub, create an OAuth App and set the callback URL
@@ -59,7 +59,7 @@ GitHub Enterprise is supported in both setup modes:
 
 To remove the GitHub integration:
 
-1. Go to instance **Settings** → **External Authentication**
+1. Go to resource **Settings** → **External Authentication**
 2. Click **Disconnect**
 3. Trigger a **Reconcile** from Advanced Settings
 

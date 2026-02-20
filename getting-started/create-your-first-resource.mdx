@@ -1,0 +1,48 @@
+---
+title: Create Your First Resource
+description: Provision a dedicated Coder deployment or Codewire Relay
+---
+
+Once you have an [organization](/getting-started/create-organization), you can add resources to it.
+
+## Add a resource
+
+1. Navigate to your organization on the [dashboard](https://codespace.sh/dashboard)
+2. Click **Add Resource**
+3. Select a **resource type**:
+   - **Coder** — a managed Coder deployment with its own database, namespace, and domain
+   - **Codewire Relay** — a WireGuard relay for AI agent connectivity
+4. Choose a **plan** (Coder plans include a 14-day free trial)
+5. Enter a **slug** — for Coder resources, this becomes your URL: `your-slug.codespace.sh`
+6. Click **Create Resource**
+
+<Info>
+  Slugs must be lowercase, use only letters, numbers, and hyphens, and be between 3-63 characters. Choose carefully — slugs cannot be changed after creation.
+</Info>
+
+## Watch provisioning
+
+Your resource transitions through: **Pending** → **Provisioning** → **Running**.
+
+The resource detail page shows real-time progress. The **Events** tab displays each provisioning step as it happens.
+
+Provisioning typically takes **2-5 minutes** for Coder resources.
+
+## Access your Coder instance
+
+Once a Coder resource shows **Running**:
+
+1. Click **Open Coder** to go to `your-slug.codespace.sh`
+2. Sign in with the **admin credentials** shown on the resource detail page
+3. Start creating workspaces from the available templates
+
+## What's next?
+
+<CardGroup cols={2}>
+  <Card title="Resource dashboard" icon="gauge" href="/resources/resource-dashboard">
+    Explore the resource detail page.
+  </Card>
+  <Card title="Invite members" icon="user-plus" href="/organizations/invite-members">
+    Add your team to the organization.
+  </Card>
+</CardGroup>

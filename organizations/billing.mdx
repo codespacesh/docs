@@ -1,0 +1,93 @@
+---
+title: Billing
+description: Manage subscriptions, plans, and usage for your organization
+---
+
+Codespace uses per-resource billing at the organization level. Each resource in your organization has its own subscription and plan.
+
+## Plans
+
+### Coder
+
+| Plan | Price | Included |
+|------|-------|----------|
+| **Starter** | $49/mo | Basic Coder deployment |
+| **Pro** | $199/mo | Enhanced resources and support |
+| **Team** | $499/mo | Team features with higher limits |
+| **Enterprise** | Custom | Dedicated support and SLAs |
+
+All Coder plans include a **14-day free trial** for your first resource.
+
+### Codewire Relay
+
+| Plan | Price | Included |
+|------|-------|----------|
+| **Relay** | $5/mo | WireGuard relay for AI agent connectivity |
+
+## Seat pricing
+
+In addition to resource plans, organizations are charged **$18 per developer per month** for workspace usage.
+
+## Resource usage and overages
+
+Each resource tracks CPU, memory, and storage usage. If you exceed your plan's included resources, overage charges apply:
+
+| Resource | Overage Rate |
+|----------|-------------|
+| **CPU** | $0.03 per core-hour |
+| **Memory** | $0.01 per GB-hour |
+| **Disk** | $0.05 per GB-hour |
+
+Usage is tracked in real time and reported to your billing dashboard.
+
+## Free trial
+
+Your first Coder resource includes a **14-day free trial**. During the trial:
+
+- Full access to all plan features
+- No credit card required to start
+- Usage tracking is active (so you can see your patterns)
+
+<Warning>
+  When the trial expires, your resource is **suspended** (scaled to zero). Add a payment method and subscribe to resume.
+</Warning>
+
+## Managing your subscription
+
+### View billing
+
+1. Navigate to your organization
+2. Click **Billing** in the organization header
+3. View active subscriptions, usage, and invoice history
+
+### Add or change payment method
+
+1. Go to **Billing** → **Manage Payment**
+2. You'll be redirected to the Stripe customer portal
+3. Update your card or payment method
+
+### View invoices
+
+1. Go to **Billing** → **Invoices**
+2. View and download past invoices
+
+### Cancel a subscription
+
+1. Go to the resource's detail page
+2. Navigate to billing settings
+3. Cancel the subscription
+
+<Warning>
+  Cancelling a subscription will **suspend** the resource. Your data (workspaces, templates, users) is preserved, but the Coder instance becomes inaccessible until you resubscribe.
+</Warning>
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Subscription plans" icon="list" href="/reference/subscription-plans">
+    Detailed plan comparison and features.
+  </Card>
+  <Card title="Resource usage" icon="chart-bar" href="/resources/resource-dashboard">
+    View usage on the resource detail page.
+  </Card>
+</CardGroup>

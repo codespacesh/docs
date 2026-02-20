@@ -1,6 +1,6 @@
 ---
 title: Quickstart
-description: Get your first Coder instance running in 5 minutes
+description: Get your first Coder resource running in 5 minutes
 ---
 
 This guide walks you through the complete flow from sign-up to a running workspace.
@@ -17,48 +17,57 @@ Codespace is in private beta. You need an **invite code** to sign up.
   If you don't receive the verification email, check your spam folder. You can also resend it from the login page.
 </Note>
 
-## 2. Create your first instance
+## 2. Create an organization
 
-1. From the [dashboard](https://codespace.sh/dashboard), click **New Instance**
-2. Enter a **name** for your instance (e.g., "My Team")
-3. Choose a **subdomain** — this becomes your instance URL: `your-subdomain.codespace.sh`
-4. Click **Create Instance**
+1. From the [dashboard](https://codespace.sh/dashboard), click **New Organization**
+2. Enter a **name** and **slug** for your organization
+3. Click **Create**
 
-## 3. Wait for provisioning
+Your organization is where you'll manage resources and team members.
 
-Codespace provisions a dedicated Coder deployment for you. This typically takes **2–5 minutes**.
+## 3. Add a Coder resource
 
-You can watch the progress on the instance detail page — the **Events** tab shows each provisioning step in real time.
+1. Inside your organization, click **Add Resource**
+2. Select **Coder** as the resource type
+3. Choose a **plan** (all plans include a 14-day free trial)
+4. Enter a **slug** — this becomes your Coder URL: `your-slug.codespace.sh`
+5. Click **Create Resource**
+
+## 4. Wait for provisioning
+
+Codespace provisions a dedicated Coder deployment for you. This typically takes **2-5 minutes**.
+
+You can watch the progress on the resource detail page — the **Events** tab shows each provisioning step in real time.
 
 <Info>
-  Your instance transitions through these states: **Pending** → **Provisioning** → **Running**. The dashboard auto-refreshes every few seconds.
+  Your resource transitions through these states: **Pending** → **Provisioning** → **Running**. The dashboard auto-refreshes every few seconds.
 </Info>
 
-## 4. Open your Coder dashboard
+## 5. Open your Coder dashboard
 
-Once your instance shows **Running**:
+Once your resource shows **Running**:
 
-1. Click **Open Coder** to go to your Coder dashboard at `your-subdomain.codespace.sh`
-2. Use the **admin credentials** shown on the instance detail page to sign in
+1. Click **Open Coder** to go to your Coder dashboard at `your-slug.codespace.sh`
+2. Use the **admin credentials** shown on the resource detail page to sign in
 3. You're now in Coder — create your first workspace from the available templates
 
-## 5. Invite your team (optional)
+## 6. Invite your team (optional)
 
-1. Go to your instance's **Settings** page
-2. Under **Team Members**, enter an email and click **Invite**
+1. Go to your organization's **Members** page
+2. Enter an email and click **Invite**
 3. Your teammate receives an email with a link to join
 
 ## What's next?
 
 <CardGroup cols={2}>
-  <Card title="Instance dashboard" icon="gauge" href="/instances/instance-dashboard">
-    Learn what's on the instance detail page.
+  <Card title="Resource dashboard" icon="gauge" href="/resources/resource-dashboard">
+    Learn what's on the resource detail page.
   </Card>
   <Card title="Manage workspaces" icon="code" href="/workspaces/manage-workspaces">
     Create, start, stop, and delete workspaces.
   </Card>
   <Card title="Connect GitHub" icon="github" href="/settings/github-integration">
-    Set up GitHub authentication for your instance.
+    Set up GitHub authentication for your Coder instance.
   </Card>
   <Card title="Set up 2FA" icon="lock" href="/settings/security">
     Secure your account with two-factor authentication.

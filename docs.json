@@ -33,20 +33,33 @@
             "pages": [
               "getting-started/create-account",
               "getting-started/sign-in",
-              "getting-started/create-your-first-instance",
+              "getting-started/create-organization",
+              "getting-started/create-your-first-resource",
               "getting-started/navigate-the-dashboard"
             ]
           },
           {
-            "group": "Instances",
+            "group": "Organizations",
             "pages": [
-              "instances/overview",
-              "instances/create-instance",
-              "instances/instance-dashboard",
-              "instances/upgrade-coder-version",
-              "instances/retry-failed-provision",
-              "instances/delete-instance",
-              "instances/custom-domains"
+              "organizations/overview",
+              "organizations/manage-members",
+              "organizations/invite-members",
+              "organizations/accept-invitation",
+              "organizations/billing"
+            ]
+          },
+          {
+            "group": "Resources",
+            "pages": [
+              "resources/overview",
+              "resources/create-resource",
+              "resources/resource-dashboard",
+              "resources/upgrade-coder-version",
+              "resources/retry-failed-provision",
+              "resources/force-reprovision",
+              "resources/delete-resource",
+              "resources/custom-domains",
+              "resources/codewire-relay"
             ]
           },
           {
@@ -58,20 +71,10 @@
             ]
           },
           {
-            "group": "Team",
-            "pages": [
-              "team/overview",
-              "team/invite-members",
-              "team/accept-invitation",
-              "team/manage-members"
-            ]
-          },
-          {
             "group": "Settings",
             "pages": [
               "settings/github-integration",
               "settings/custom-login-provider",
-              "settings/subscription-and-usage",
               "settings/security"
             ]
           },
@@ -85,7 +88,7 @@
           {
             "group": "Reference",
             "pages": [
-              "reference/instance-statuses",
+              "reference/resource-statuses",
               "reference/provisioning-events",
               "reference/subscription-plans",
               "reference/faq"

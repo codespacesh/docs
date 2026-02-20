@@ -1,62 +1,65 @@
 ---
 title: Subscription plans
-description: Compare Solo, Team, and Custom plans
+description: Plans, pricing, and resource allocations
 ---
 
-Codespace offers three subscription tiers to match your team's needs.
+Codespace uses per-resource billing. Each resource in your organization has its own subscription.
 
-## Plan comparison
+## Coder Plans
 
-| Feature | Solo | Team | Custom |
-|---------|------|------|--------|
-| **Workspaces per user** | 5 | 20 | Unlimited |
-| **Total workspaces** | 10 | 100 | Custom |
-| **CPU hours/month** | 720 | 2,880 | Custom |
-| **Memory GB-hours/month** | Included | Included | Custom |
-| **Storage** | Included | Included | Custom |
-| **Team members** | 1 | Unlimited | Unlimited |
-| **Custom domains** | No | Yes | Yes |
-| **Dedicated support** | No | No | Yes |
+| Feature | Starter | Pro | Team | Enterprise |
+|---------|:-------:|:---:|:----:|:----------:|
+| **Price** | $49/mo | $199/mo | $499/mo | Custom |
+| Dedicated Coder instance | Yes | Yes | Yes | Yes |
+| Dedicated database | Yes | Yes | Yes | Yes |
+| TLS + custom domain | Yes | Yes | Yes | Yes |
+| Automatic upgrades | Yes | Yes | Yes | Yes |
+| **Free trial** | 14 days | 14 days | 14 days | Contact us |
 
-## Solo plan
+## Codewire Relay Plan
 
-Best for individual developers:
+| Feature | Relay |
+|---------|:-----:|
+| **Price** | $5/mo |
+| Message routing | Yes |
+| Auth token | Yes |
+| WireGuard relay | Yes |
 
-- 5 workspaces per user, 10 total
-- 720 CPU hours per month (~1 workspace running 24/7)
-- Ideal for personal projects and experimentation
+## Seat Pricing
 
-## Team plan
+All plans include seat-based pricing at **$18 per developer per month** for workspace usage.
 
-Best for teams and organizations:
+## Resource Overages
 
-- 20 workspaces per user, 100 total
-- 2,880 CPU hours per month (~4 workspaces running 24/7)
-- Unlimited team members
-- Custom domain support
+If your resource exceeds plan allocations, overage charges apply:
 
-## Custom plan
+| Resource | Rate |
+|----------|------|
+| **CPU** | $0.03 per core-hour |
+| **Memory** | $0.01 per GB-hour |
+| **Disk** | $0.05 per GB-hour |
 
-For organizations with specific requirements:
+Overages are calculated based on actual usage, tracked in 5-minute intervals and aggregated monthly.
 
-- Unlimited workspaces
-- Custom resource limits
-- Dedicated support
-- SLA guarantees
-- Contact sales for pricing
+## Free Trial
 
-## Resource overages
+Your first Coder resource includes a **14-day free trial** with full access to all features. No credit card required to start.
 
-If you exceed your plan's included resources:
+<Warning>
+  When the trial expires, the resource is **suspended**. Add a payment method to resume.
+</Warning>
 
-- An **Overage** badge appears on the usage meters in your instance settings
-- Overage usage is billed at the end of the billing period
-- Usage is tracked per billing cycle — it resets when a new period begins
+## Changing Plans
 
-<Tip>
-  Monitor your usage from the instance Settings page. If you're consistently hitting overages, upgrading to the next tier is usually more cost-effective.
-</Tip>
+You can upgrade or downgrade your plan at any time from the resource's billing settings. Changes take effect immediately, with prorated charges for the billing period.
 
-## Changing plans
+## Related
 
-To upgrade or change your plan, visit the instance Settings page. For downgrades or custom arrangements, contact support.
+<CardGroup cols={2}>
+  <Card title="Billing" icon="credit-card" href="/organizations/billing">
+    Manage organization billing and payments.
+  </Card>
+  <Card title="Resource dashboard" icon="gauge" href="/resources/resource-dashboard">
+    View resource usage and details.
+  </Card>
+</CardGroup>

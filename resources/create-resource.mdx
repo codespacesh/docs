@@ -1,0 +1,46 @@
+---
+title: Create a resource
+description: Provision a new resource in your organization
+---
+
+## Before you start
+
+- You need a verified Codespace account
+- You must be an **owner** of the organization
+- Make sure you know what subdomain you want — it can't be changed later
+
+## Steps
+
+1. Go to your organization dashboard
+2. Click **Add Resource**
+3. Select a **resource type**:
+   - **Coder** — a fully managed Coder deployment
+   - **Codewire Relay** — a WireGuard relay for AI agent connectivity
+4. Choose a **plan** (Coder resources include a **14-day free trial**)
+5. Fill in the form:
+   - **Resource name** — a display name (e.g., "Engineering", "Design Team")
+   - **Subdomain** — your resource URL prefix
+6. Click **Create Resource**
+
+## Subdomain format
+
+Your subdomain becomes the domain `subdomain.codespace.sh`. The rules are:
+
+- Lowercase letters (`a-z`), numbers (`0-9`), and hyphens (`-`)
+- Must start and end with a letter or number
+- No spaces or special characters
+- Must be unique across all Codespace resources
+
+**Examples:**
+- `my-team` → `my-team.codespace.sh`
+- `acme-engineering` → `acme-engineering.codespace.sh`
+
+## Provisioning
+
+After creating the resource, provisioning begins automatically. For a Coder resource, this sets up a dedicated environment with its own database, TLS certificate, and DNS record.
+
+The process typically takes **2-5 minutes**. Track progress on the [resource dashboard](/resources/resource-dashboard) in the Events tab.
+
+## What happens if provisioning fails?
+
+Don't worry — you can [retry provisioning](/resources/retry-failed-provision) from the resource detail page. The Events tab will show which step failed and why.

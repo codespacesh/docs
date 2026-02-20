@@ -1,30 +1,30 @@
 ---
-title: Instance dashboard
-description: Understanding the instance detail page
+title: Resource dashboard
+description: Understanding the resource detail page
 ---
 
-The instance dashboard shows everything about a specific instance. Access it by clicking an instance card on the main dashboard.
+The resource dashboard shows everything about a specific resource. Access it by clicking a resource card on the organization dashboard.
 
 ## Header
 
 The top of the page shows:
 
-- **Instance name** and status badge
+- **Resource name** and status badge
 - **Open Coder** button — opens your Coder dashboard at `subdomain.codespace.sh` (visible when running)
 - **Delete** button — owner only, with confirmation dialog
 
-## Instance details card
+## Instance Details card
 
 | Field | Description |
 |-------|-------------|
-| **Domain** | Your instance URL (`subdomain.codespace.sh`) |
+| **Domain** | Your resource URL (`subdomain.codespace.sh`) |
 | **Coder version** | Currently deployed version |
-| **Created** | When the instance was created |
+| **Created** | When the resource was created |
 | **Last updated** | Most recent status change |
 
 ## Admin credentials
 
-When your instance is first provisioned, Codespace generates admin credentials for the Coder dashboard:
+When your Coder instance is first provisioned, Codespace generates admin credentials for the Coder dashboard:
 
 - **Username** — the admin account name
 - **Email** — the admin email address
@@ -40,7 +40,7 @@ Each field has a **copy** button. The password is hidden by default — click th
 
 ### Workspaces tab
 
-Lists all workspaces running in this instance. Each entry shows:
+Lists all workspaces running in this Coder instance. Each entry shows:
 
 - Workspace name and owner
 - Current status (running, stopped, etc.)
@@ -52,17 +52,17 @@ A timeline of provisioning events. Each event shows:
 
 - Timestamp and event type
 - Status indicator (green = completed, red = failed, yellow = in progress)
-- Expandable details with Terraform resource information
+- Expandable details with infrastructure change information
 - Resource badges showing what was created (+), updated (~), or deleted (-)
 
 ## Quick actions sidebar
 
-Context-aware actions based on instance state:
+Context-aware actions based on resource state:
 
 | Action | When available |
 |--------|---------------|
-| **Open Coder Dashboard** | Instance is running |
+| **Open Coder Dashboard** | Resource is running |
 | **Settings & Limits** | Always |
 | **Upgrade Coder** | New version available |
-| **Force Reprovision** | Instance is running |
+| **Force Reprovision** | Resource is running |
 | **Retry Provisioning** | Provisioning failed |

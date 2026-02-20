@@ -1,0 +1,44 @@
+---
+title: Retry failed provisioning
+description: Recover from provisioning failures
+---
+
+If your resource fails to provision, you can retry from the resource detail page.
+
+## Check the events
+
+Before retrying, review the **Events** tab on the resource detail page. It shows which provisioning step failed and often includes error details.
+
+Common failure causes:
+
+| Cause | What to do |
+|-------|------------|
+| Temporary infrastructure issue | Retry — usually succeeds on the second attempt |
+| Resource quota exceeded | Check your [subscription plan](/reference/subscription-plans) |
+| Network timeout | Retry after a few minutes |
+
+## Retry provisioning
+
+1. Go to the resource detail page
+2. In the quick actions sidebar, click **Retry Provisioning**
+3. Codespace re-runs the full provisioning process
+
+The resource returns to **Provisioning** state and you can track progress in the Events tab.
+
+## Force reprovision (running resources)
+
+If your resource is already running but in a stuck or corrupted state, use [Force Reprovision](/resources/force-reprovision) instead. This tears down the application deployment and re-runs the full provisioning pipeline while preserving your data.
+
+If your resource is running and you need to re-apply configuration (for example, after changing [GitHub integration](/settings/github-integration) or [login provider](/settings/custom-login-provider) settings):
+
+1. Go to the resource detail page
+2. Click **Force Reprovision** in the sidebar
+3. Codespace re-applies the configuration
+
+<Warning>
+  Force reprovisioning briefly interrupts access to your Coder instance while configuration is re-applied.
+</Warning>
+
+## Still failing?
+
+If provisioning continues to fail after retrying, the Events tab provides detailed error information. Contact support with the event details for assistance.

@@ -1,0 +1,66 @@
+---
+title: Force Reprovision
+description: Recover stuck resources by forcing a clean reprovision
+---
+
+Force Reprovision is a recovery tool for resources that are stuck or in a bad state. It tears down the application deployment and re-runs the full provisioning pipeline.
+
+## When to use
+
+Use Force Reprovision when:
+
+- Your resource shows **Running** but the Coder dashboard is inaccessible
+- A previous upgrade or provisioning partially failed
+- Standard retry doesn't resolve the issue
+
+<Warning>
+  Force Reprovision is a recovery operation. Only use it when other options have failed.
+</Warning>
+
+## What happens
+
+**Preserved** (your data is safe):
+- Your database (all Coder data: workspaces, templates, users)
+- DNS records
+- Existing workspace data
+
+**Recreated** (rebuilt from scratch):
+- The Coder application deployment
+- Ingress and routing configuration
+- Admin setup
+
+The Coder instance restarts with the same database, so all your workspaces, templates, and users are intact after reprovisioning.
+
+## How to force reprovision
+
+1. Navigate to the resource's detail page
+2. Click **Force Reprovision** in the actions menu
+3. Type the **resource name** to confirm
+4. Click **Confirm**
+
+The resource enters **Provisioning** state while the deployment is rebuilt. This typically takes **2-5 minutes**.
+
+<Info>
+  Force Reprovision requires the **owner** role in the organization.
+</Info>
+
+## After reprovisioning
+
+Once complete:
+- The resource returns to **Running** status
+- Admin credentials remain the same
+- All workspaces and templates are preserved
+- Users can sign in immediately
+
+If the reprovision fails, check the **Events** tab for details and contact support.
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Retry failed provision" icon="rotate" href="/resources/retry-failed-provision">
+    For resources that failed during initial provisioning.
+  </Card>
+  <Card title="Resource statuses" icon="circle-info" href="/reference/resource-statuses">
+    Understanding resource lifecycle states.
+  </Card>
+</CardGroup>

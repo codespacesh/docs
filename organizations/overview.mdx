@@ -1,0 +1,54 @@
+---
+title: Organizations
+description: Manage your team and resources within an organization
+---
+
+Organizations are the core grouping in Codespace. Each organization has its own members, roles, resources, and billing.
+
+## What's in an organization?
+
+- **Resources** — Coder deployments, Codewire Relays, and other provisioned services, each with their own infrastructure
+- **Members** — Team members with role-based access control
+- **Billing** — Per-resource subscriptions and usage tracking managed at the organization level
+
+## Roles
+
+Organizations use three roles with different permission levels:
+
+| Permission | Owner | Admin | Member |
+|------------|:-----:|:-----:|:------:|
+| View resources and workspaces | Yes | Yes | Yes |
+| Create workspaces (in Coder) | Yes | Yes | Yes |
+| Add / delete resources | Yes | Yes | No |
+| Manage members and invitations | Yes | Yes | No |
+| Change organization settings | Yes | Yes | No |
+| Transfer ownership | Yes | No | No |
+| Delete organization | Yes | No | No |
+
+<Info>
+  The user who creates an organization is automatically the **owner**. There is exactly one owner per organization.
+</Info>
+
+## Organization lifecycle
+
+1. **Create** — Any user can create an organization from the dashboard
+2. **Add resources** — Provision Coder deployments, Codewire Relays, etc.
+3. **Invite members** — Send email invitations to collaborators
+4. **Manage** — Adjust roles, billing, and resource settings as needed
+
+## Related guides
+
+<CardGroup cols={2}>
+  <Card title="Invite members" icon="user-plus" href="/organizations/invite-members">
+    Send invitations to your team.
+  </Card>
+  <Card title="Manage members" icon="users" href="/organizations/manage-members">
+    Change roles and remove members.
+  </Card>
+  <Card title="Billing" icon="credit-card" href="/organizations/billing">
+    Manage subscriptions and usage.
+  </Card>
+  <Card title="Add a resource" icon="plus" href="/resources/create-resource">
+    Provision a new Coder deployment.
+  </Card>
+</CardGroup>

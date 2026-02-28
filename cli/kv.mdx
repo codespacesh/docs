@@ -1,0 +1,64 @@
+---
+title: Shared KV Store
+description: Cross-node key-value store for coordination in relay mode.
+---
+
+# Shared KV Store
+
+The shared key-value store is available in relay mode. It provides cross-node coordination for distributed agent workflows.
+
+## kv set
+
+Set a key-value pair on the relay's shared store.
+
+```bash
+cw kv set [--ns <namespace>] [--ttl <duration>] <key> <value>
+```
+
+| Flag | Description |
+|------|-------------|
+| `--ns` | Namespace for key isolation |
+| `--ttl` | Time-to-live duration (e.g. `1h`, `30m`, `24h`) |
+
+```bash
+cw kv set --ns build build-status "passing"
+cw kv set --ttl 1h cache:result "42"
+```
+
+## kv get
+
+Get a value by key.
+
+```bash
+cw kv get [--ns <namespace>] <key>
+```
+
+## kv list
+
+List keys by prefix.
+
+```bash
+cw kv list [--ns <namespace>] [prefix]
+```
+
+```bash
+cw kv list --ns build          # all keys in build namespace
+cw kv list cache:              # keys starting with "cache:"
+```
+
+## kv delete
+
+Delete a key.
+
+```bash
+cw kv delete [--ns <namespace>] <key>
+```
+
+## Use Cases
+
+| Pattern | Example |
+|---------|---------|
+| **Build coordination** | Workers write results, supervisor reads them |
+| **Feature flags** | Set flags that agents check before proceeding |
+| **Distributed locks** | Use TTL keys as advisory locks |
+| **Shared state** | Agents on different nodes share data through the relay KV |

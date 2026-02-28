@@ -1,0 +1,94 @@
+---
+title: Orchestration
+description: Tags, subscribe, wait, supervisor pattern, and agent swarms.
+---
+
+# Orchestration
+
+CodeWire provides structured coordination primitives for LLM-driven multi-agent workflows — no polling, no output parsing.
+
+## Tags
+
+Label sessions at launch for filtering and coordination.
+
+```bash
+cw launch --tag worker --tag build -- claude -p "fix tests"
+cw launch --tag worker --tag lint -- claude -p "fix lint issues"
+cw kill --tag worker          # kill all workers
+```
+
+Tags are used by `list`, `kill`, `wait`, and `subscribe` for filtering.
+
+## subscribe
+
+Subscribe to real-time session events. Events stream until disconnect.
+
+```bash
+cw subscribe [node] [--tag <tag>] [--event <type>] [--session <id>]
+```
+
+```bash
+cw subscribe --tag worker --event session.status
+cw subscribe --session 3
+```
+
+### Event Types
+
+| Event | Description |
+|-------|-------------|
+| `session.created` | New session launched |
+| `session.status` | Session status changed (running, completed, failed) |
+| `session.output_summary` | Output summary update |
+| `session.input` | Input sent to session |
+| `session.attached` | Client attached to session |
+| `session.detached` | Client detached from session |
+| `direct.message` | Direct message sent between sessions |
+| `message.request` | Request sent (awaiting reply) |
+| `message.reply` | Reply to a pending request |
+
+## wait
+
+Block until sessions complete. Replaces polling.
+
+```bash
+cw wait [node:]<id> [--tag <tag>] [--condition all|any] [--timeout <s>]
+```
+
+| Flag | Description |
+|------|-------------|
+| `--tag` | Wait for sessions matching this tag |
+| `--condition` | `all` (default) waits for all sessions, `any` returns when first completes |
+| `--timeout` | Maximum wait time in seconds |
+
+```bash
+cw wait 3                                         # wait for session 3
+cw wait --tag worker --condition all              # ALL workers
+cw wait --tag worker --condition any --timeout 60 # ANY, 60s timeout
+```
+
+## Supervisor Pattern
+
+One orchestrator launches and waits on tagged worker sessions.
+
+```bash
+# Launch tagged workers
+cw launch --tag worker -- claude -p "implement feature X"
+cw launch --tag worker -- claude -p "write tests for X"
+
+# Wait for all to complete
+cw wait --tag worker --condition all --timeout 300
+
+# Check results
+cw list --json
+```
+
+## Multi-Agent Patterns
+
+| Pattern | Description |
+|---------|-------------|
+| **Agent Messaging** | Named agents exchange messages with `cw msg`, coordinate with `cw request`/`cw reply` |
+| **Multiple Attachments** | Multiple clients can attach to the same session simultaneously |
+| **Supervisor** | One orchestrator launches and waits on tagged worker sessions |
+| **Agent Swarms** | Parallel agents with event subscriptions for coordination |
+| **Cross-Session** | Use `cw send` and `cw watch` to pipe data between sessions |
+| **Shared State** | Use `cw kv` for cross-node key-value coordination (relay mode) |

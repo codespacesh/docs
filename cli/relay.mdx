@@ -1,0 +1,95 @@
+---
+title: Relay
+description: Remote access via SSH gateway, relay setup, and topology.
+---
+
+# Relay
+
+Two tiers: **Standalone** (default, zero config, local only) and **Relay mode** (opt-in remote access via SSH gateway).
+
+## Setup
+
+Register your node with a relay to enable remote access.
+
+```bash
+# Register with a relay
+cw setup --relay-url https://relay.codewire.sh --invite <token>
+
+# Your node is now accessible via SSH
+ssh dev-1@relay.codewire.sh -p 2222
+```
+
+## Remote Commands
+
+All commands accept an optional node prefix for remote access.
+
+```bash
+cw nodes                                  # list all nodes
+cw list dev-1                              # sessions on dev-1
+cw attach dev-1:3                          # session 3 on dev-1
+cw launch dev-1 --tag worker -- claude -p "fix bug"
+cw kill dev-1:3
+```
+
+## Direct WebSocket
+
+Connect directly via WebSocket without a relay.
+
+```bash
+cw server add my-server wss://remote-host:9100 --token <token>
+cw --server my-server list
+```
+
+## Running a Relay Server
+
+```bash
+cw relay [--base-url <url>] [--data-dir <dir>] [--auth-mode <mode>]
+```
+
+The relay server provides:
+- **HTTPS** on port 443 — client API connections
+- **SSH** on port 2222 — SSH into any registered node
+- **WebSocket** at `/node/connect` — nodes connect here (outbound from node)
+- **KV API** at `/api/v1/kv/*` — shared key-value store
+
+## Relay Topology
+
+Nodes establish persistent outbound WebSocket connections to a relay server — no root required, works behind NAT.
+
+```
+                        INTERNET
+                           |
+                  +--------+--------+
+                  |   cw relay      |
+                  | HTTPS :443      |  <- Clients connect here
+                  | SSH  :2222      |  <- SSH into any node
+                  | /node/connect   |  <- Nodes connect here (WS)
+                  | /api/v1/kv/*    |  <- Shared KV store
+                  +--------+--------+
+                      |         |
+         WS agent     |         |   WS agent
+         (outbound)   |         |   (outbound)
+                      |         |
+              +-------+--+  +---+-------+
+              | cw node  |  | cw node   |
+              | "dev-1"  |  | "gpu-box" |
+              +----------+  +-----------+
+```
+
+### Connection Flow
+
+1. Node registers with relay (invite or token)
+2. Node opens persistent outbound WebSocket to relay
+3. Client SSHs into relay: `ssh dev-1@relay:2222`
+4. Relay signals node via WebSocket, node dials back
+5. Relay bridges SSH channel to node's bash PTY
+
+## Node & Server Management
+
+```bash
+cw node                    # Start the node process (usually auto-started)
+cw stop                    # Stop the running node gracefully
+cw server add <name> <url> [--token <token>]   # Save a remote connection
+cw server remove <name>    # Remove a saved server
+cw server list             # List all saved servers
+```

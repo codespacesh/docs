@@ -1,0 +1,97 @@
+---
+title: Messaging
+description: Direct messages, request/reply, and real-time message monitoring.
+---
+
+# Messaging
+
+Named agents exchange structured messages — direct messages for fire-and-forget, request/reply for synchronous coordination.
+
+## msg
+
+Send a direct message to a session. Target can be a session ID or name.
+
+```bash
+cw msg <target> <body> [-f <session>]
+```
+
+| Flag | Description |
+|------|-------------|
+| `target` | Session ID or name to send to |
+| `body` | Message content |
+| `-f` | Sender session (for named agent identity) |
+
+```bash
+# Launch named agents
+cw launch planner -- claude -p "plan the refactor"
+cw launch coder -- claude -p "implement changes"
+
+# Send a direct message
+cw msg -f planner coder "start with the auth module"
+```
+
+## inbox
+
+Read messages from a session's inbox. Shows direct messages and pending requests.
+
+```bash
+cw inbox <session> [-t <N>]
+```
+
+| Flag | Description |
+|------|-------------|
+| `session` | Session ID or name |
+| `-t` | Show last N messages |
+
+## request
+
+Send a request and block until a reply arrives. Synchronous coordination between agents.
+
+```bash
+cw request <target> <body> [-f <session>] [--timeout <s>]
+```
+
+| Flag | Description |
+|------|-------------|
+| `target` | Session ID or name |
+| `body` | Request content |
+| `-f` | Sender session |
+| `--timeout` | Maximum wait time in seconds |
+
+```bash
+cw request -f planner coder "ready for review?"
+# [reply from coder] yes, PR #42 is up
+```
+
+## reply
+
+Reply to a pending request. Request ID comes from `cw inbox` or `message.request` events.
+
+```bash
+cw reply <request-id> <body> [-f <session>]
+```
+
+## listen
+
+Stream all message traffic in real-time. Shows messages, requests, and replies as they happen.
+
+```bash
+cw listen [--session <session>]
+```
+
+## Example: Coordinated Agents
+
+```bash
+# Launch named agents
+cw launch planner -- claude -p "plan the refactor"
+cw launch coder -- claude -p "implement changes"
+
+# Planner sends instructions
+cw msg -f planner coder "start with the auth module"
+
+# Planner asks for status (blocks until reply)
+cw request -f planner coder "ready for review?"
+
+# Monitor all message traffic
+cw listen
+```

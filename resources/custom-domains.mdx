@@ -1,9 +1,9 @@
 ---
 title: Custom domains
-description: Use your own domain with a Codespace resource
+description: Use your own domain with a CodeWire resource
 ---
 
-By default, every resource gets a domain at `your-subdomain.codespace.sh`. Custom domain support allows you to use your own domain instead.
+By default, every resource gets a domain at `your-subdomain.codewire.sh`. Custom domain support allows you to use your own domain instead.
 
 <Info>
   Custom domains are available on **Team** and **Custom** plans. See [Subscription plans](/reference/subscription-plans) for details.
@@ -11,7 +11,7 @@ By default, every resource gets a domain at `your-subdomain.codespace.sh`. Custo
 
 ## How it works
 
-With a custom domain configured, your Coder instance is accessible at your own domain (e.g., `dev.yourcompany.com`) instead of the default `subdomain.codespace.sh`.
+With a custom domain configured, your Coder instance is accessible at your own domain (e.g., `dev.yourcompany.com`) instead of the default `subdomain.codewire.sh`.
 
 ## DNS configuration
 
@@ -19,7 +19,7 @@ To use a custom domain, add a **CNAME record** in your DNS provider:
 
 | Record type | Name | Value |
 |-------------|------|-------|
-| CNAME | `dev` (your subdomain) | `your-subdomain.codespace.sh` |
+| CNAME | `dev` (your subdomain) | `your-subdomain.codewire.sh` |
 
 The TLS certificate is automatically provisioned for your custom domain once DNS propagation is complete.
 
@@ -33,8 +33,8 @@ Coder uses wildcard subdomains for workspace apps (e.g., `app--workspace.dev.you
 
 | Record type | Name | Value |
 |-------------|------|-------|
-| CNAME | `dev` | `your-subdomain.codespace.sh` |
-| CNAME | `*.dev` | `your-subdomain.codespace.sh` |
+| CNAME | `dev` | `your-subdomain.codewire.sh` |
+| CNAME | `*.dev` | `your-subdomain.codewire.sh` |
 
 ## After configuring DNS
 

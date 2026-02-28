@@ -3,14 +3,14 @@ title: Custom login provider
 description: Configure a custom OAuth/OIDC provider for your Coder instance
 ---
 
-By default, your Coder instance uses **Codespace SSO** — users sign in through Codespace and are automatically authenticated with Coder. You can override this with a custom OAuth/OIDC provider.
+By default, your Coder instance uses **CodeWire SSO** — users sign in through CodeWire and are automatically authenticated with Coder. You can override this with a custom OAuth/OIDC provider.
 
-## Default: Codespace SSO
+## Default: CodeWire SSO
 
 With the default setup:
 
-- Users sign in to Codespace with email/password
-- Codespace issues tokens that Coder accepts automatically
+- Users sign in to CodeWire with email/password
+- CodeWire issues tokens that Coder accepts automatically
 - No additional configuration needed
 
 This is recommended for most teams.
@@ -35,10 +35,10 @@ If your organization uses an identity provider like **Okta**, **Auth0**, **Azure
   After saving, you must click **Reconcile Configuration** in Advanced Settings for the change to take effect. This re-provisions your resource with the new login settings.
 </Warning>
 
-## Switching back to Codespace SSO
+## Switching back to CodeWire SSO
 
 1. Go to **Advanced Settings** → **Login Provider Override**
-2. Select **Codespace SSO (default)**
+2. Select **CodeWire SSO (default)**
 3. Click **Save**
 4. Click **Reconcile Configuration**
 

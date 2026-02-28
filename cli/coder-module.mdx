@@ -1,0 +1,34 @@
+---
+title: Coder Module
+description: Terraform module for adding CodeWire to Coder workspaces.
+---
+
+# Coder Module
+
+Add CodeWire to Coder workspaces with a Terraform module. This installs `cw` into your workspace and optionally starts the node process.
+
+## Usage
+
+```hcl
+module "codewire" {
+  source   = "github.com/codewiresh/codewire//coder-module"
+  agent_id = coder_agent.main.id
+  folder   = "/home/coder/project"
+}
+```
+
+## Variables
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `agent_id` | *required* | The ID of a Coder agent |
+| `folder` | `/home/coder` | Working directory for sessions |
+| `install_codewire` | `true` | Whether to install `cw` |
+| `codewire_version` | `latest` | Version to install |
+| `experiment_report_tasks` | `false` | Enable Coder MCP task reporting |
+
+## What It Does
+
+1. Installs the `cw` binary into the workspace
+2. Configures the node with the workspace's working directory
+3. Optionally enables Coder MCP task reporting for AI agent visibility

@@ -1,0 +1,64 @@
+---
+title: MCP Integration
+description: MCP server setup and available tools for AI agent control.
+---
+
+# MCP Integration
+
+CodeWire exposes an MCP server (JSON-RPC 2.0 over stdin/stdout) so AI agents can programmatically manage sessions.
+
+## Setup
+
+### Claude Code
+
+```bash
+claude mcp add --scope user codewire -- cw mcp-server
+```
+
+### MCP Server Command
+
+```bash
+cw mcp-server
+```
+
+Starts the MCP server over stdin/stdout. Designed to be launched by AI agents as a subprocess.
+
+## Available Tools
+
+### Session Management
+
+| Tool | Description | Key Parameters |
+|------|-------------|----------------|
+| `codewire_launch_session` | Launch a new session | `command`, `working_dir`, `tags` |
+| `codewire_list_sessions` | List all sessions | `status_filter`: all \| running \| completed |
+| `codewire_read_session_output` | Read output snapshot | `session_id`, `tail`, `max_chars` |
+| `codewire_send_input` | Send input to session | `session_id`, `input`, `auto_newline` |
+| `codewire_watch_session` | Monitor (time-bounded) | `session_id`, `max_duration_seconds` |
+| `codewire_get_session_status` | Detailed session info | `session_id` |
+| `codewire_kill_session` | Terminate session | `session_id`, `tags` |
+
+### Orchestration
+
+| Tool | Description | Key Parameters |
+|------|-------------|----------------|
+| `codewire_subscribe` | Subscribe to events | `tags`, `event_types`, `duration_seconds` |
+| `codewire_wait_for` | Wait for completion | `session_id`, `tags`, `condition`, `timeout` |
+
+### Messaging
+
+| Tool | Description | Key Parameters |
+|------|-------------|----------------|
+| `codewire_msg` | Send a direct message | `to_session_id` \| `to_name`, `body`, `from_session_id` |
+| `codewire_read_messages` | Read session inbox | `session_id`, `tail` |
+| `codewire_request` | Request and block for reply | `to_session_id` \| `to_name`, `body`, `timeout_seconds` |
+| `codewire_reply` | Reply to a pending request | `request_id`, `body`, `from_session_id` |
+
+### Remote & KV
+
+| Tool | Description | Key Parameters |
+|------|-------------|----------------|
+| `codewire_list_nodes` | List relay nodes | — |
+| `codewire_kv_set` | Set key-value | `namespace`, `key`, `value`, `ttl` |
+| `codewire_kv_get` | Get value by key | `namespace`, `key` |
+| `codewire_kv_list` | List keys by prefix | `namespace`, `prefix` |
+| `codewire_kv_delete` | Delete key | `namespace`, `key` |

@@ -1,0 +1,79 @@
+---
+title: Configuration
+description: Config file, environment variables, and data directory layout.
+---
+
+# Configuration
+
+## Config File
+
+Located at `~/.codewire/config.toml`.
+
+```toml
+[node]
+name = "my-node"                          # Node name
+listen = "0.0.0.0:9100"                   # Direct WebSocket (optional)
+external_url = "wss://host/ws"            # Advertised URL
+relay_url = "https://relay.codewire.sh"   # Opt-in remote access
+```
+
+## Environment Variables
+
+Environment variables override config file values.
+
+| Variable | Overrides | Description |
+|----------|-----------|-------------|
+| `CODEWIRE_NODE_NAME` | `node.name` | Node display name |
+| `CODEWIRE_LISTEN` | `node.listen` | WebSocket listen address |
+| `CODEWIRE_EXTERNAL_URL` | `node.external_url` | Advertised URL for clients |
+| `CODEWIRE_RELAY_URL` | `node.relay_url` | Relay server URL |
+| `CODEWIRE_TOKEN` | — | Auth token (useful in containers) |
+
+## Data Directory
+
+`~/.codewire/` contains all runtime state.
+
+```
+~/.codewire/
+|-- codewire.sock         # Unix domain socket
+|-- codewire.pid          # Node PID file
+|-- token                 # Auth token (direct WS fallback)
+|-- config.toml           # Configuration
+|-- servers.toml          # Saved remote servers
+|-- sessions.json         # Session metadata
+`-- sessions/
+    |-- 1/
+    |   |-- output.log    # Captured PTY output
+    |   `-- events.jsonl  # Metadata event log
+    `-- 2/
+        |-- output.log
+        `-- events.jsonl
+```
+
+## Global Flags
+
+All commands accept these global flags:
+
+| Flag | Description |
+|------|-------------|
+| `--server <name\|url>` | Connect to a remote server or relay |
+| `--token <token>` | Authentication token for remote connections |
+
+## Wire Protocol
+
+Binary frame-based protocol used over both Unix socket and WebSocket.
+
+```
+Frame Format:
++----------+---------------+----------------------+
+| type     | length        | payload              |
+| 1 byte   | 4 bytes (BE)  | up to 16 MB          |
++----------+---------------+----------------------+
+
+type = 0x00  Control  -- JSON-encoded Request/Response
+type = 0x01  Data     -- Raw bytes (PTY I/O)
+
+WebSocket Mapping:
+Text   frames -- Control messages (JSON)
+Binary frames -- Data messages (raw bytes)
+```

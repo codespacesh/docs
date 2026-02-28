@@ -1,0 +1,115 @@
+---
+title: Sessions
+description: Launch, attach, list, kill, and manage persistent sessions.
+---
+
+# Sessions
+
+Sessions are persistent PTY processes that run in the background. They survive disconnects — launch a process, close your terminal, reconnect later.
+
+## launch
+
+Start a new session in a persistent PTY.
+
+```bash
+cw launch [name] [--dir <dir>] [--tag <tag>...] -- <command> [args...]
+```
+
+| Flag | Description |
+|------|-------------|
+| `name` | Optional positional name before `--` for stable messaging identifier |
+| `--dir` | Working directory for the process |
+| `--tag` | Tags for filtering and orchestration (repeatable) |
+
+```bash
+# Launch with tags
+cw launch worker --dir ~/project --tag build -- claude -p "refactor the auth module"
+
+# Launch unnamed
+cw launch --tag lint -- eslint src/
+```
+
+## attach
+
+Connect to a running session interactively. Detach with `Ctrl+B d`.
+
+```bash
+cw attach [<id>] [--no-history]
+```
+
+| Flag | Description |
+|------|-------------|
+| `id` | Session ID. Omit to auto-select the oldest unattached session |
+| `--no-history` | Don't replay buffered output on attach |
+
+## list
+
+Show all sessions with status, tags, age, and command.
+
+```bash
+cw list [node] [--json]
+```
+
+```
+ ID  NAME      STATUS     TAGS           AGE     COMMAND
+  1  planner   running    worker,build   2m ago  claude -p "refactor the auth module"
+  2  coder     running    worker         45s     claude -p "implement changes"
+```
+
+## kill
+
+Terminate a session by ID, tag, or all.
+
+```bash
+cw kill <id> [--all] [--tag <tag>]
+```
+
+```bash
+cw kill 1                    # kill session 1
+cw kill --tag worker         # kill all workers
+cw kill --all                # kill everything
+```
+
+## logs
+
+View captured output without attaching.
+
+```bash
+cw logs <id> [--follow] [--tail <N>]
+```
+
+| Flag | Description |
+|------|-------------|
+| `--follow`, `-f` | Stream new output in real-time |
+| `--tail` | Show last N lines |
+
+## send
+
+Send input to a session without attaching.
+
+```bash
+cw send <id> [input] [--stdin] [--file <path>] [--no-newline]
+```
+
+| Flag | Description |
+|------|-------------|
+| `input` | Text to send as positional argument |
+| `--stdin` | Read input from stdin |
+| `--file` | Read input from a file |
+| `--no-newline` | Don't append a newline after input |
+
+## watch
+
+Monitor a session in real-time without attaching. Read-only observation.
+
+```bash
+cw watch <id> [--tail <N>] [--no-history] [--timeout <s>]
+```
+
+## status
+
+Get detailed session info including exit code, duration, tags, PID, and output stats.
+
+```bash
+cw status <id> [--json]
+```

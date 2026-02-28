@@ -1,0 +1,91 @@
+---
+title: Overview
+description: What is CodeWire CLI? Installation and quick start.
+---
+
+# CodeWire CLI
+
+CodeWire CLI (`cw`) is a persistent process server for AI coding agents. Like tmux, but purpose-built for long-running LLM processes — native terminal scrolling, copy/paste, and no weird key chords. Tags, subscriptions, and wait provide LLM orchestration primitives out of the box.
+
+## Key Features
+
+- **Persistent sessions** — Processes run in PTYs that survive disconnects
+- **Tags and orchestration** — Label sessions, subscribe to events, wait for completion
+- **Agent messaging** — Named agents exchange messages and coordinate with request/reply
+- **Remote access** — SSH gateway via relay, access any machine from anywhere
+- **MCP integration** — AI agents control sessions programmatically
+- **Shared KV store** — Cross-node key-value coordination in relay mode
+
+## Installation
+
+### Homebrew
+
+Supported on macOS (aarch64, x86_64) and Linux (aarch64, x86_64).
+
+```bash
+brew install codewiresh/codewire/codewire
+```
+
+### Install Script
+
+Downloads the binary, verifies GPG signature and SHA256 checksum.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/codewiresh/codewire/main/install.sh | bash
+```
+
+Options: `--version VERSION`, `--prefix DIR`, `--verbose`
+
+### Build from Source
+
+```bash
+go build -o cw ./cmd/cw
+sudo mv cw /usr/local/bin/cw
+```
+
+## Quick Start
+
+```bash
+# Launch a persistent session
+cw launch worker --dir ~/project --tag build -- claude -p "refactor the auth module"
+
+# Attach to it (detach with Ctrl+B d)
+cw attach 1
+
+# List all sessions
+cw list
+
+# Wait for completion
+cw wait --tag worker --condition all
+```
+
+## Architecture
+
+A single Go binary acts as both node and CLI client. The node manages PTY sessions and keeps processes alive regardless of client connections.
+
+```
+                     cw node
+                ~/.codewire/codewire.sock
+
+  +----------------------------------------------+
+  |              SessionManager                   |
+  |                                              |
+  |   +----------+  +----------+                 |
+  |   | Sess 1   |  | Sess 2   |   ...         |
+  |   +----+-----+  +----+-----+                 |
+  |        |              |                      |
+  |   Per-Session:                               |
+  |     PTY master (/dev/ptmx)                   |
+  |     Broadcast buffer (4096)                  |
+  |     Input channel (256 buffer)               |
+  |     output.log + events.jsonl                |
+  |                                              |
+  |   SubscriptionManager (event pub/sub)        |
+  |   sessions.json (debounced 500ms)            |
+  +----------------------------------------------+
+                       |
+            +----------+----------+
+            |                     |
+       Unix Socket            WebSocket
+       local clients           :9100 (opt.)
+```

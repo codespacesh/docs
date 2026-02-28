@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Codespace",
+  "name": "CodeWire",
   "colors": {
     "primary": "#F97316",
     "light": "#FB923C",
@@ -16,7 +16,7 @@
     "primary": {
       "type": "button",
       "label": "Dashboard",
-      "href": "https://codespace.sh/dashboard"
+      "href": "https://codewire.sh/dashboard"
     }
   },
   "navigation": {
@@ -95,13 +95,32 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "CLI",
+        "groups": [
+          {
+            "group": "CLI",
+            "pages": [
+              "cli/overview",
+              "cli/sessions",
+              "cli/orchestration",
+              "cli/messaging",
+              "cli/relay",
+              "cli/kv",
+              "cli/mcp",
+              "cli/configuration",
+              "cli/coder-module"
+            ]
+          }
+        ]
       }
     ],
     "global": {
       "anchors": [
         {
           "anchor": "Dashboard",
-          "href": "https://codespace.sh/dashboard",
+          "href": "https://codewire.sh/dashboard",
           "icon": "browser"
         }
       ]
@@ -109,7 +128,7 @@
   },
   "footer": {
     "socials": {
-      "github": "https://github.com/codespacesh"
+      "github": "https://github.com/codewiresh"
     }
   }
 }

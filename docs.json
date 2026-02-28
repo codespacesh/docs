@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "CodeWire",
   "colors": {
-    "primary": "#F97316",
-    "light": "#FB923C",
-    "dark": "#F97316"
+    "primary": "#0EA5E9",
+    "light": "#38BDF8",
+    "dark": "#0EA5E9"
   },
   "favicon": "/favicon.svg",
   "logo": {

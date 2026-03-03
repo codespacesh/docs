@@ -29,10 +29,10 @@ If your organization uses an identity provider like **Okta**, **Auth0**, **Azure
    - **Client ID** — the OAuth client ID from your provider
    - **Client Secret** — the OAuth client secret from your provider
 5. Click **Save**
-6. Click **Reconcile Configuration** to apply the changes
+6. Click **Sync Configuration** to apply the changes
 
 <Warning>
-  After saving, you must click **Reconcile Configuration** in Advanced Settings for the change to take effect. This re-provisions your resource with the new login settings.
+  After saving, you must click **Sync Configuration** in Advanced Settings for the change to take effect. This re-provisions your resource with the new login settings.
 </Warning>
 
 ## Switching back to CodeWire SSO
@@ -40,10 +40,10 @@ If your organization uses an identity provider like **Okta**, **Auth0**, **Azure
 1. Go to **Advanced Settings** → **Login Provider Override**
 2. Select **CodeWire SSO (default)**
 3. Click **Save**
-4. Click **Reconcile Configuration**
+4. Click **Sync Configuration**
 
 ## Important notes
 
-- The reconcile process takes 1–2 minutes while your resource is re-provisioned
+- The sync process takes 1–2 minutes while your resource is re-provisioned
 - Existing Coder sessions may be invalidated when switching providers
 - Make sure your OIDC provider is configured to allow redirects to your resource domain

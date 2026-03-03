@@ -45,8 +45,12 @@ Once connected, the settings page shows:
 - A **Disconnect** button to remove the integration
 
 <Warning>
-  After changing GitHub settings, you must **Reconcile** the configuration from the Advanced Settings section for changes to take effect on your Coder instance.
+  After changing GitHub settings, you must **Sync Configuration** from the Advanced Settings section for changes to take effect on your Coder instance.
 </Warning>
+
+<Note>
+  This is a per-resource GitHub App integration for Coder authentication. For private repo access during workspace creation, you can also set a GitHub Token in [Organization Secrets](/organizations/secrets) — this is a separate, dashboard-level OAuth connection.
+</Note>
 
 ## GitHub Enterprise
 
@@ -61,6 +65,6 @@ To remove the GitHub integration:
 
 1. Go to resource **Settings** → **External Authentication**
 2. Click **Disconnect**
-3. Trigger a **Reconcile** from Advanced Settings
+3. Click **Sync Configuration** from Advanced Settings
 
 Users will no longer be able to sign in via GitHub or access private repositories.

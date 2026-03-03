@@ -1,22 +1,61 @@
 ---
 title: Navigate the dashboard
-description: Understanding the CodeWire dashboard layout
+description: Understanding the Codewire dashboard layout
 ---
 
 The dashboard at [codewire.sh/dashboard](https://codewire.sh/dashboard) is your home base for managing organizations and resources.
 
-## Organization view
+## Home
 
-The dashboard shows your organizations. Select an organization to see its resources, members, and billing. Use the **organization switcher** in the sidebar to move between organizations.
+The home page shows all your organizations, each displaying:
+
+- **Organization name**
+- **Resource count** — total resources in the org
+- **Running count** — how many resources are currently running
+
+### Setup checklist
+
+After creating your first organization, a setup checklist guides you through:
+
+1. Create an organization
+2. Create a resource
+3. Connect GitHub
+
+Completed steps are checked off automatically.
+
+## Sidebar
+
+The sidebar is the primary navigation. It contains:
+
+### Organization groups
+
+Each organization you belong to appears as an expandable group. Expand an org to see:
+
+- **Resources** — listed with status dots (green = running, yellow = provisioning, red = failed)
+- **Workspace sub-items** — workspaces nested under each resource
+
+### Per-org quick links
+
+Each organization group has quick links:
+
+- **Launch** — open the [AI-powered workspace launcher](/getting-started/launch-workspace)
+- **Secrets** — manage [organization secrets](/organizations/secrets) (GitHub tokens, API keys)
+
+### Bottom links
+
+- **Billing** — organization billing and subscription management
+- **Settings** — account and organization settings
+- **Docs** — link to this documentation
+- **Sign Out** — sign out of your account
 
 ## Resource cards
 
-Each resource appears as a card showing:
+Click an organization to see its resources. Each resource card shows:
 
+- **Type icon** — Coder or Relay
 - **Name** — the slug you chose
-- **Domain** — e.g., `your-slug.codewire.sh`
-- **Status badge** — current state of the resource
-- **Coder version** — which version of Coder is deployed (for Coder resources)
+- **Status badge** — current state (Running, Provisioning, Failed, Suspended)
+- **Billing plan/status** — current plan and subscription state
 
 ### Status colors
 
@@ -25,35 +64,14 @@ Each resource appears as a card showing:
 | Green | Running | Resource is healthy and accessible |
 | Yellow | Provisioning | Infrastructure is being set up |
 | Red | Failed | Provisioning encountered an error |
+| Orange | Suspended | Suspended due to billing |
 
 ## Resource detail page
 
-Click a resource card to open its detail page. From here you can:
-
-- **Open Coder** — launch your Coder dashboard in a new tab
-- **View credentials** — see admin username, email, and password
-- **Browse workspaces** — see all workspaces in the Workspaces tab
-- **Check events** — review provisioning history in the Events tab
-- **Manage settings** — configure GitHub integration and more
+Click a resource card to open its detail page. See [Resource dashboard](/resources/resource-dashboard) for full details.
 
 ## Navigation
 
-The top bar and sidebar include:
-
-- **codewire.sh** logo — returns to the dashboard
-- **Dashboard** link — organization and resource list
-- **Members** — manage organization members and invitations
-- **Billing** — view subscription and usage for the organization
-- **Add Resource** — provision a new Coder deployment or Codewire Relay
-- **Settings** — account settings (security, sessions, account management)
-- **User menu** — sign out
-
-## Quick actions
-
-On the resource detail page, the sidebar shows context-aware actions:
-
-- **Open Coder Dashboard** — when the Coder instance is running
-- **Settings & Limits** — subscription and resource usage
-- **Upgrade Coder** — when a newer version is available
-- **Retry Provisioning** — when provisioning has failed
-- **Force Reprovision** — re-apply configuration to a running resource
+- **Codewire logo** — returns to the home page
+- **Sidebar** — primary navigation for orgs, resources, and workspaces
+- **Dashboard button** (navbar) — returns to the dashboard

@@ -1,80 +1,50 @@
 ---
 title: Manage workspaces
-description: Start, stop, duplicate, and delete workspaces
+description: Connect to, monitor, and manage workspaces
 ---
 
-The workspace detail page in CodeWire gives you a unified view of a workspace and its resources.
+The workspace detail page in Codewire shows workspace status and provides connection options.
 
 ## Accessing a workspace
 
-1. Go to your resource detail page
-2. Click the **Workspaces** tab
-3. Click a workspace to open its detail page
+1. Expand a resource in the sidebar to see its workspaces, or
+2. Go to the resource detail page and click a workspace in the workspaces table
 
 ## Workspace detail page
 
 The detail page shows:
 
 - **Name** — displayed as `owner/workspace-name`
-- **Status badge** — current state
+- **Status badge** — current state (running, stopped, starting, etc.)
 - **Last used** — relative timestamp
 - **Template** — which template it was created from
 
-## Actions
+## Connect buttons
 
-### Start, stop, and restart
+The workspace page provides quick connection options:
 
-Use the action buttons in the header:
+| Button | Description |
+|--------|-------------|
+| **Open IDE** | Open the workspace in the browser-based IDE |
+| **Terminal** | Launch a web terminal session |
+| **VS Code** | Deep link to open in VS Code Desktop via SSH |
+| **Web** | Open web apps running in the workspace |
 
-- **Start** — boot the workspace (when stopped)
-- **Stop** — shut down compute but keep storage (when running)
-- **Restart** — stop and start in sequence (when running)
+## Workspace actions
 
-### Update template
+Workspace lifecycle actions (start, stop, restart, rebuild, delete) are managed through the **Coder interface**, not the Codewire dashboard. Click **Open Coder** on the resource detail page to access these actions.
 
-If the workspace's template has been updated, an **Update** button appears. Clicking it rebuilds the workspace with the latest template version.
-
-### Duplicate
-
-Create a copy of the workspace:
-
-1. Click the overflow menu (three dots)
-2. Select **Duplicate**
-3. Enter a name for the new workspace
-4. Click **Duplicate**
-
-The new workspace uses the same template and configuration.
-
-### Delete
-
-Permanently remove a workspace:
-
-1. Click the overflow menu
-2. Select **Delete**
-3. Type the workspace name to confirm
-4. Click **Delete Workspace**
-
-<Warning>
-  Deleting a workspace destroys all its data, including persistent volumes. This cannot be undone.
-</Warning>
-
-### Favorite
-
-Click the star icon to mark a workspace as a favorite for quick access.
+<Note>
+  The Codewire dashboard provides monitoring and connection shortcuts. For full workspace management (scheduling, template updates, rebuilds), use the Coder dashboard at `your-subdomain.codewire.sh`.
+</Note>
 
 ## Resources
 
 The resources section shows the infrastructure backing the workspace:
 
-- **Pod** — the running container
+- **Pod** — the running VM/container
 - **Agents** — processes providing access to the workspace
   - Agent name, status, OS, architecture, and version
   - Available apps (terminal, code-server, custom apps)
 
-Click an app link to open it directly — for example, a web terminal or VS Code in the browser.
-
-## Quick links
-
-- **Open Terminal** — launch a terminal session in the workspace
-- **Workspace Settings** — open Coder's workspace settings page
-- **Schedule Settings** — configure auto-start/stop schedules
+Click an app link to open it directly.

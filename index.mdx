@@ -1,47 +1,65 @@
 ---
-title: What is CodeWire?
-description: Managed Coder development environments and infrastructure for teams
+title: What is Codewire?
+description: Cloud machines for AI coding agents
 ---
 
-CodeWire is a platform that provisions and manages development infrastructure for your team. Create **organizations**, invite members, and provision **resources** — dedicated [Coder](https://coder.com) instances, Codewire relays, and more — all without Kubernetes expertise.
+Codewire gives every AI coding agent its own dedicated cloud environment. Launch Claude Code, Codex, or any tool on isolated machines — and run them in parallel.
+
+No shared kernels. No noisy neighbors. Each workspace gets a Xen-isolated VM with its own dedicated resources.
 
 ## Key concepts
 
 <CardGroup cols={3}>
   <Card title="Organizations" icon="building">
-    Group your team and resources together. Each organization has its own members, roles (owner, admin, member), billing, and resource inventory.
+    Group your team, resources, and billing together. Each organization has its own members, roles (owner, admin, member), and resource inventory.
   </Card>
   <Card title="Resources" icon="server">
-    Provisioned services within an organization. Coder deployments get their own database, namespace, TLS certificate, and domain at `your-name.codewire.sh`. Codewire Relays provide WireGuard connectivity for AI agents.
+    Dedicated cloud machines within an organization. Coder deployments get their own database, namespace, TLS certificate, and domain at `your-name.codewire.sh`. Codewire Relays provide connectivity for distributed AI agents.
   </Card>
   <Card title="Workspaces" icon="code">
-    Development environments inside a Coder resource, created from templates. Each workspace is an isolated container with your tools and code.
+    Isolated dev environments where AI agents run. Each workspace is a VM with your tools, code, and full root access — created from templates or launched directly from a repo URL.
   </Card>
 </CardGroup>
 
 ## How it works
 
-1. **Sign up** with an invite code and create your account
-2. **Create an organization** — name it and invite your team
-3. **Add a resource** — pick a type (Coder or Codewire Relay), choose a plan, and CodeWire provisions everything automatically
-4. **Open Coder** — your Coder resource is live at `your-name.codewire.sh` with admin credentials ready
-5. **Create workspaces** — use templates to spin up dev environments in seconds
+### From the web
 
-## How is this different from self-hosting Coder?
+1. **Sign up** with an invite code and set up 2FA
+2. **Create an organization** and follow the setup checklist
+3. **Add a resource** — pick a type (Coder or Codewire Relay), choose a plan, and Codewire provisions everything
+4. **Launch a workspace** — use the AI-powered launcher to analyze a repo and spin up an environment
+5. **Connect** — open a terminal, VS Code, or SSH into your workspace
 
-| | CodeWire | Self-hosted Coder |
-|---|---|---|
-| **Setup** | Add a resource in 2 minutes | Configure infrastructure, databases, TLS, DNS yourself |
-| **Maintenance** | Automatic upgrades, monitoring, backups | You manage everything |
-| **Infrastructure** | Dedicated namespace and database per resource | You provision and manage your own cluster |
-| **Team management** | Built-in organizations with invitations and roles | Configure your own identity provider |
-| **Billing** | Per-resource plans with usage tracking | License cost + your infrastructure costs |
+### From the CLI
+
+```bash
+brew install codewiresh/codewire/codewire
+cw setup                                    # interactive wizard: login, org, resource, GitHub
+cw launch github.com/your-org/your-repo     # AI detects stack, creates workspace
+cw run -- claude "fix the tests"            # run an agent in a persistent session
+```
+
+## Codewire vs alternatives
+
+| | Codewire | Self-hosted Coder | GitHub Codespaces |
+|---|---|---|---|
+| **Setup** | Add a resource in 2 minutes | Configure infrastructure, databases, TLS, DNS | Instant but limited config |
+| **Isolation** | Xen hypervisor — dedicated kernel per workspace | Depends on your infrastructure | Shared kernel (container-based) |
+| **AI agents** | First-class support — launch, orchestrate, monitor | Manual setup | Not designed for agents |
+| **Maintenance** | Automatic upgrades, monitoring, backups | You manage everything | Managed by GitHub |
+| **Team management** | Built-in orgs with invitations and roles | Configure your own IdP | GitHub org/team permissions |
+| **Infrastructure** | Dedicated namespace and database per resource | You provision your own cluster | Shared infrastructure |
+| **Billing** | Per-resource plans with usage tracking | License + your infra costs | Per-minute compute pricing |
 
 ## Next steps
 
-<CardGroup cols={2}>
+<CardGroup cols={3}>
   <Card title="Quickstart" icon="rocket" href="/quickstart">
-    Get your first resource running in 5 minutes.
+    Get your first workspace running in 5 minutes.
+  </Card>
+  <Card title="CLI quickstart" icon="terminal" href="/cli/overview">
+    Install the CLI and launch agents from your terminal.
   </Card>
   <Card title="Create an account" icon="user-plus" href="/getting-started/create-account">
     Sign up and verify your email.

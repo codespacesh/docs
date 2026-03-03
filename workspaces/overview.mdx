@@ -27,19 +27,31 @@ Workspaces can be started, stopped, and restarted. When stopped, persistent stor
 
 ## Creating workspaces
 
-Workspaces are created from the **Coder dashboard** (your instance at `subdomain.codewire.sh`), not from the CodeWire dashboard. Each instance comes with pre-configured templates.
+There are two ways to create workspaces:
 
-To create a workspace:
+### AI-powered launch (from Codewire)
+
+Use the **Launch** feature in the Codewire sidebar to create a workspace from a repo URL. AI analyzes your repository and configures the workspace automatically.
+
+See [Launch a workspace](/getting-started/launch-workspace) for the full guide.
+
+### From the Coder dashboard
 
 1. Open your Coder dashboard via the **Open Coder** button
 2. Choose a template
 3. Name your workspace and configure parameters
 4. Click **Create Workspace**
 
-## Viewing workspaces from CodeWire
+### From the CLI
 
-The CodeWire dashboard shows all workspaces across your Coder instance in the **Workspaces** tab on the resource detail page. From there you can:
+```bash
+cw launch github.com/your-org/your-repo
+```
+
+## Viewing workspaces from Codewire
+
+The Codewire dashboard shows all workspaces in the sidebar (nested under each resource) and in the workspaces table on the resource detail page. From there you can:
 
 - See workspace names, owners, and statuses
 - Click through to the [workspace detail page](/workspaces/manage-workspaces)
-- Start, stop, restart, duplicate, or delete workspaces
+- Connect via IDE, terminal, VS Code, or web

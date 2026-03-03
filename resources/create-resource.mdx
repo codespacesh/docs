@@ -6,7 +6,7 @@ description: Provision a new resource in your organization
 ## Before you start
 
 - You need a verified CodeWire account
-- You must be an **owner** of the organization
+- You must be an **owner or admin** of the organization
 - Make sure you know what subdomain you want — it can't be changed later
 
 ## Steps
@@ -39,7 +39,9 @@ Your subdomain becomes the domain `subdomain.codewire.sh`. The rules are:
 
 After creating the resource, provisioning begins automatically. For a Coder resource, this sets up a dedicated environment with its own database, TLS certificate, and DNS record.
 
-The process typically takes **2-5 minutes**. Track progress on the [resource dashboard](/resources/resource-dashboard) in the Events tab.
+If this is your first resource and you don't have a payment method on file, you'll be redirected to **Stripe Checkout** to set up billing before provisioning begins.
+
+The process typically takes **2-5 minutes**. The resource detail page shows a **provision timeline** with real-time progress.
 
 ## What happens if provisioning fails?
 

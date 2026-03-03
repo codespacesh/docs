@@ -22,9 +22,9 @@ cw msg <target> <body> [-f <session>]
 | `-f` | Sender session (for named agent identity) |
 
 ```bash
-# Launch named agents
-cw launch planner -- claude -p "plan the refactor"
-cw launch coder -- claude -p "implement changes"
+# Run named agents
+cw run planner -- claude -p "plan the refactor"
+cw run coder -- claude -p "implement changes"
 
 # Send a direct message
 cw msg -f planner coder "start with the auth module"
@@ -82,9 +82,9 @@ cw listen [--session <session>]
 ## Example: Coordinated Agents
 
 ```bash
-# Launch named agents
-cw launch planner -- claude -p "plan the refactor"
-cw launch coder -- claude -p "implement changes"
+# Run named agents
+cw run planner -- claude -p "plan the refactor"
+cw run coder -- claude -p "implement changes"
 
 # Planner sends instructions
 cw msg -f planner coder "start with the auth module"

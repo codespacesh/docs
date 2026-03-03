@@ -1,25 +1,37 @@
 ---
 title: FAQ
-description: Frequently asked questions about CodeWire
+description: Frequently asked questions about Codewire
 ---
 
 ## General
 
 <AccordionGroup>
-  <Accordion title="What is CodeWire?">
-    CodeWire is a managed platform for provisioning and running [Coder](https://coder.com) development environments. Each organization gets dedicated Coder resources with their own infrastructure, accessible at `your-subdomain.codewire.sh`.
+  <Accordion title="What is Codewire?">
+    Codewire provides cloud machines for AI coding agents. Every agent gets its own dedicated, Xen-isolated environment with full root access. Launch Claude Code, Codex, or any tool on isolated machines — and run them in parallel.
   </Accordion>
 
-  <Accordion title="How is CodeWire different from GitHub Codespaces?">
-    Despite the similar name, CodeWire and GitHub Codespaces are different products. CodeWire provisions dedicated Coder resources with full Coder functionality including custom templates, multiple IDEs, and SSH access. GitHub Codespaces provides single-user dev containers tied to GitHub repositories.
+  <Accordion title="What AI tools work with Codewire?">
+    Any tool that runs in a terminal or dev environment: Claude Code, OpenAI Codex, Cursor, GitHub Copilot, Aider, and more. Codewire workspaces are full Linux VMs — if it runs on Linux, it runs on Codewire.
   </Accordion>
 
-  <Accordion title="Do I need to know Kubernetes to use CodeWire?">
-    No. CodeWire handles all infrastructure — Kubernetes, databases, TLS certificates, and DNS — automatically. You just create a resource and start using it.
+  <Accordion title="How does isolation work?">
+    Each workspace runs on a Xen hypervisor with its own dedicated kernel. Unlike container-based solutions that share a kernel, Codewire workspaces have full hardware-level isolation. No shared resources, no noisy neighbors.
+  </Accordion>
+
+  <Accordion title="How is Codewire different from GitHub Codespaces?">
+    Isolation and AI agent support are the main differences. Codespaces uses shared-kernel containers — Codewire uses Xen VMs with dedicated kernels per workspace. Codewire is built for running AI agents in parallel with orchestration primitives (sessions, tags, wait, messaging). Codespaces is designed for single-user interactive development.
+  </Accordion>
+
+  <Accordion title="Can I use the CLI without the web dashboard?">
+    Yes. The CLI has two operating modes: **Standalone** for local sessions, relay, and orchestration — no Codewire account needed. **Platform mode** integrates with codewire.sh for workspace management, org commands, and remote access.
+  </Accordion>
+
+  <Accordion title="Do I need to know Kubernetes to use Codewire?">
+    No. Codewire handles all infrastructure — Kubernetes, databases, TLS certificates, and DNS — automatically. You just create a resource and start using it.
   </Accordion>
 
   <Accordion title="How long does provisioning take?">
-    Typically 2-5 minutes. You can watch progress in real time on the Events tab.
+    Typically 2-5 minutes for Coder resources. Under a minute for Codewire Relays. You can watch progress in real time on the resource detail page.
   </Accordion>
 </AccordionGroup>
 
@@ -27,7 +39,7 @@ description: Frequently asked questions about CodeWire
 
 <AccordionGroup>
   <Accordion title="How do I get an invite code?">
-    CodeWire is in private beta. Invite codes are distributed by existing users or the CodeWire team. Contact us if you'd like early access.
+    Codewire is in private beta. Invite codes are distributed by existing users or the Codewire team. Contact hello@codewire.sh if you'd like early access.
   </Accordion>
 
   <Accordion title="I didn't receive my verification email">
@@ -55,11 +67,11 @@ description: Frequently asked questions about CodeWire
   </Accordion>
 
   <Accordion title="How many members can I have?">
-    There is no limit on organization members. Seat pricing is $18 per developer per month.
+    There is no limit on organization members. Seat pricing is $18 per developer per month. AI agents don't count as seats.
   </Accordion>
 
   <Accordion title="Can I transfer organization ownership?">
-    Not self-service currently. Contact support for ownership transfers.
+    Not self-service currently. Contact hello@codewire.sh for ownership transfers.
   </Accordion>
 </AccordionGroup>
 
@@ -71,7 +83,7 @@ description: Frequently asked questions about CodeWire
   </Accordion>
 
   <Accordion title="What happens when provisioning fails?">
-    Check the Events tab for error details. In most cases, clicking **Retry Provisioning** resolves the issue. If it continues to fail, contact support with the event details.
+    Check the provision timeline on the resource detail page for error details. In most cases, clicking **Retry Provisioning** resolves the issue. If it continues to fail, contact hello@codewire.sh with the event details.
   </Accordion>
 
   <Accordion title="Can I have multiple resources?">
@@ -83,7 +95,7 @@ description: Frequently asked questions about CodeWire
   </Accordion>
 
   <Accordion title="What is a Codewire Relay?">
-    A WireGuard relay service for AI agent connectivity, provisioned as a resource within your organization. It includes message routing and an authentication token.
+    A relay service for AI agent connectivity, provisioned as a resource within your organization. It includes message routing and an authentication token. Connect your CLI nodes to it for remote access and cross-node coordination.
   </Accordion>
 
   <Accordion title="What is Force Reprovision?">
@@ -99,11 +111,15 @@ description: Frequently asked questions about CodeWire
   </Accordion>
 
   <Accordion title="How does per-resource billing work?">
-    Each resource in your organization has its own subscription and plan. Coder resources have Starter, Pro, Team, and Enterprise plans. Codewire Relays use the Relay plan at $5/month.
+    Each resource in your organization has its own subscription and plan. Coder resources have Starter, Pro, Team, and Enterprise plans. Codewire Relays use the Relay plan at $5/month. All Coder plans include a 14-day free trial.
   </Accordion>
 
   <Accordion title="How are overages calculated?">
     Usage is tracked in 5-minute intervals and aggregated monthly. Overages are billed at: CPU $0.03/core-hour, Memory $0.01/GB-hour, Disk $0.05/GB-hour.
+  </Accordion>
+
+  <Accordion title="Do AI agents count as seats?">
+    No. Seat pricing ($18/developer/month) is for human developers only. You can run as many AI agents as your resource plan supports.
   </Accordion>
 </AccordionGroup>
 
@@ -111,15 +127,11 @@ description: Frequently asked questions about CodeWire
 
 <AccordionGroup>
   <Accordion title="Where do I create workspaces?">
-    Workspaces are created from the Coder dashboard at `your-subdomain.codewire.sh`. Open it via the **Open Coder** button on your resource detail page. The CodeWire dashboard shows existing workspaces for monitoring.
+    Two ways: use the **Launch** feature in the Codewire sidebar to create a workspace from a repo URL with AI-powered detection, or open your Coder dashboard via the **Open Coder** button and create workspaces from templates.
   </Accordion>
 
   <Accordion title="What happens to my data when a workspace is stopped?">
     Persistent volumes are preserved when a workspace is stopped. Only compute resources (CPU, memory) are released. Your files remain intact.
-  </Accordion>
-
-  <Accordion title="Can I duplicate a workspace?">
-    Yes. From the workspace detail page, click the overflow menu and select **Duplicate**. The new workspace uses the same template and configuration.
   </Accordion>
 </AccordionGroup>
 
@@ -127,10 +139,18 @@ description: Frequently asked questions about CodeWire
 
 <AccordionGroup>
   <Accordion title="What 2FA methods are supported?">
-    CodeWire supports TOTP (Time-based One-Time Password) via authenticator apps like Google Authenticator, Authy, or 1Password. 10 backup codes are provided as a fallback.
+    Codewire supports TOTP (Time-based One-Time Password) via authenticator apps like Google Authenticator, Authy, or 1Password. 10 backup codes are provided as a fallback. 2FA is mandatory — it's set up during onboarding.
   </Accordion>
 
   <Accordion title="How do I revoke access from a lost device?">
     Go to [Settings → Sessions](https://codewire.sh/settings/sessions) and revoke the session for that device. You can also click **Revoke All Other Sessions** to sign out everywhere except your current device.
+  </Accordion>
+</AccordionGroup>
+
+## Support
+
+<AccordionGroup>
+  <Accordion title="How do I get help?">
+    Email hello@codewire.sh. For billing or account issues, include your organization name and the email associated with your account.
   </Accordion>
 </AccordionGroup>

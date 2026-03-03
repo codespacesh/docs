@@ -1,11 +1,30 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "CodeWire",
+  "theme": "maple",
+  "name": "Codewire",
   "colors": {
     "primary": "#0EA5E9",
-    "light": "#38BDF8",
+    "light": "#0EA5E9",
     "dark": "#0EA5E9"
+  },
+  "appearance": {
+    "default": "dark",
+    "strict": true
+  },
+  "fonts": {
+    "heading": {
+      "family": "Inter",
+      "weight": 510
+    },
+    "body": {
+      "family": "Inter",
+      "weight": 450
+    }
+  },
+  "background": {
+    "color": {
+      "dark": "#08090a"
+    }
   },
   "favicon": "/favicon.svg",
   "logo": {
@@ -25,7 +44,7 @@
         "tab": "Documentation",
         "groups": [
           {
-            "group": "",
+            "group": "Overview",
             "pages": ["index", "quickstart"]
           },
           {
@@ -35,7 +54,8 @@
               "getting-started/sign-in",
               "getting-started/create-organization",
               "getting-started/create-your-first-resource",
-              "getting-started/navigate-the-dashboard"
+              "getting-started/navigate-the-dashboard",
+              "getting-started/launch-workspace"
             ]
           },
           {
@@ -45,7 +65,8 @@
               "organizations/manage-members",
               "organizations/invite-members",
               "organizations/accept-invitation",
-              "organizations/billing"
+              "organizations/billing",
+              "organizations/secrets"
             ]
           },
           {
@@ -79,13 +100,6 @@
             ]
           },
           {
-            "group": "Apps",
-            "pages": [
-              "apps/desktop-app",
-              "apps/mobile-app"
-            ]
-          },
-          {
             "group": "Reference",
             "pages": [
               "reference/resource-statuses",
@@ -103,6 +117,7 @@
             "group": "CLI",
             "pages": [
               "cli/overview",
+              "cli/platform",
               "cli/sessions",
               "cli/orchestration",
               "cli/messaging",

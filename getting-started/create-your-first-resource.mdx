@@ -5,14 +5,22 @@ description: Provision a dedicated Coder deployment or Codewire Relay
 
 Once you have an [organization](/getting-started/create-organization), you can add resources to it.
 
+## Before you start
+
+- You need a verified Codewire account with 2FA enabled
+- You must be an **owner or admin** of the organization
+
 ## Add a resource
 
 1. Navigate to your organization on the [dashboard](https://codewire.sh/dashboard)
 2. Click **Add Resource**
 3. Select a **resource type**:
    - **Coder** — a managed Coder deployment with its own database, namespace, and domain
-   - **Codewire Relay** — a WireGuard relay for AI agent connectivity
-4. Choose a **plan** (Coder plans include a 14-day free trial)
+   - **Codewire Relay** — a relay for AI agent connectivity
+4. Choose a **plan**:
+   - Coder: Starter ($49/mo), Pro ($199/mo), Team ($499/mo), Enterprise (custom)
+   - Relay: $5/mo
+   - All Coder plans include a **14-day free trial**
 5. Enter a **slug** — for Coder resources, this becomes your URL: `your-slug.codewire.sh`
 6. Click **Create Resource**
 
@@ -20,11 +28,13 @@ Once you have an [organization](/getting-started/create-organization), you can a
   Slugs must be lowercase, use only letters, numbers, and hyphens, and be between 3-63 characters. Choose carefully — slugs cannot be changed after creation.
 </Info>
 
+If this is your first resource and you don't have a payment method on file, you'll be redirected to **Stripe Checkout** to set up billing.
+
 ## Watch provisioning
 
 Your resource transitions through: **Pending** → **Provisioning** → **Running**.
 
-The resource detail page shows real-time progress. The **Events** tab displays each provisioning step as it happens.
+The resource detail page shows a **provision timeline** with real-time progress — each step is displayed inline, not just in the Events tab.
 
 Provisioning typically takes **2-5 minutes** for Coder resources.
 

@@ -1,11 +1,38 @@
 ---
 title: Overview
-description: What is CodeWire CLI? Installation and quick start.
+description: What is Codewire CLI? Installation, operating modes, and quick start.
 ---
 
-# CodeWire CLI
+# Codewire CLI
 
-CodeWire CLI (`cw`) is a persistent process server for AI coding agents. Like tmux, but purpose-built for long-running LLM processes — native terminal scrolling, copy/paste, and no weird key chords. Tags, subscriptions, and wait provide LLM orchestration primitives out of the box.
+Codewire CLI (`cw`) is a persistent process server for AI coding agents. Like tmux, but purpose-built for long-running LLM processes — native terminal scrolling, copy/paste, and no weird key chords. Tags, subscriptions, and wait provide LLM orchestration primitives out of the box.
+
+## Operating Modes
+
+The CLI has two modes:
+
+### Standalone mode
+
+Sessions, relay, orchestration, and messaging — no Codewire account required. Everything runs locally or via a self-hosted relay.
+
+```bash
+cw run worker --tag build -- claude -p "refactor the auth module"
+cw attach 1
+cw wait --tag worker --condition all
+```
+
+### Platform mode
+
+Integrates with codewire.sh for workspace management, org commands, billing, and remote access. Requires a Codewire account.
+
+```bash
+cw setup                                    # interactive wizard
+cw launch github.com/your-org/your-repo     # create workspace from repo
+cw workspaces                               # list workspaces
+cw run -- claude "fix the tests"            # SSH into workspace + run session
+```
+
+See [Platform commands](/cli/platform) for the full reference.
 
 ## Key Features
 
@@ -15,6 +42,7 @@ CodeWire CLI (`cw`) is a persistent process server for AI coding agents. Like tm
 - **Remote access** — SSH gateway via relay, access any machine from anywhere
 - **MCP integration** — AI agents control sessions programmatically
 - **Shared KV store** — Cross-node key-value coordination in relay mode
+- **Platform integration** — Manage workspaces, orgs, and resources from the terminal
 
 ## Installation
 
@@ -45,9 +73,11 @@ sudo mv cw /usr/local/bin/cw
 
 ## Quick Start
 
+### Standalone
+
 ```bash
-# Launch a persistent session
-cw launch worker --dir ~/project --tag build -- claude -p "refactor the auth module"
+# Run a persistent session
+cw run worker --dir ~/project --tag build -- claude -p "refactor the auth module"
 
 # Attach to it (detach with Ctrl+B d)
 cw attach 1
@@ -57,6 +87,19 @@ cw list
 
 # Wait for completion
 cw wait --tag worker --condition all
+```
+
+### Platform
+
+```bash
+# Set up platform connection
+cw setup
+
+# Launch a workspace from a repo
+cw launch github.com/your-org/your-repo
+
+# Run an agent in the workspace
+cw run -- claude "fix the tests"
 ```
 
 ## Architecture

@@ -3,7 +3,7 @@ title: Resources overview
 description: Understanding resources in CodeWire
 ---
 
-A **resource** is a fully managed service provisioned by CodeWire within your organization. Each resource has its own infrastructure, domain, and configuration.
+A **resource** is a dedicated cloud machine provisioned by Codewire within your organization. Each resource has its own infrastructure, domain, and configuration — isolated from other resources.
 
 ## Resource types
 
@@ -38,16 +38,17 @@ Running → Deleting → Deleted
 
 See [Resource statuses](/reference/resource-statuses) for details on each state.
 
-## Owner vs member access
+## Access by role
 
-| Action | Owner | Member |
-|--------|-------|--------|
-| Create workspaces | Yes | Yes |
-| View resource details | Yes | Yes |
-| Manage organization members | Yes | No |
-| Configure settings | Yes | No |
-| Delete resource | Yes | No |
-| Upgrade Coder version | Yes | No |
+| Action | Owner | Admin | Member |
+|--------|:-----:|:-----:|:------:|
+| Create workspaces | Yes | Yes | Yes |
+| View resource details | Yes | Yes | Yes |
+| Create resources | Yes | Yes | No |
+| Configure settings | Yes | Yes | No |
+| Delete resource | Yes | Yes | No |
+| Upgrade Coder version | Yes | Yes | No |
+| View admin credentials | Yes | No | No |
 
 ## Limits
 

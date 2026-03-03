@@ -1,18 +1,22 @@
 ---
 title: Sessions
-description: Launch, attach, list, kill, and manage persistent sessions.
+description: Run, attach, list, kill, and manage persistent sessions.
 ---
 
 # Sessions
 
-Sessions are persistent PTY processes that run in the background. They survive disconnects — launch a process, close your terminal, reconnect later.
+Sessions are persistent PTY processes that run in the background. They survive disconnects — start a process, close your terminal, reconnect later.
 
-## launch
+<Note>
+  `cw run` creates a local PTY session. `cw launch` creates a workspace on the platform. See [Platform commands](/cli/platform) for workspace management.
+</Note>
+
+## run
 
 Start a new session in a persistent PTY.
 
 ```bash
-cw launch [name] [--dir <dir>] [--tag <tag>...] -- <command> [args...]
+cw run [name] [--dir <dir>] [--tag <tag>...] -- <command> [args...]
 ```
 
 | Flag | Description |
@@ -22,11 +26,11 @@ cw launch [name] [--dir <dir>] [--tag <tag>...] -- <command> [args...]
 | `--tag` | Tags for filtering and orchestration (repeatable) |
 
 ```bash
-# Launch with tags
-cw launch worker --dir ~/project --tag build -- claude -p "refactor the auth module"
+# Run with tags
+cw run worker --dir ~/project --tag build -- claude -p "refactor the auth module"
 
-# Launch unnamed
-cw launch --tag lint -- eslint src/
+# Run unnamed
+cw run --tag lint -- eslint src/
 ```
 
 ## attach

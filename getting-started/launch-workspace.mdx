@@ -1,0 +1,74 @@
+---
+title: Launch a workspace
+description: Use AI-powered detection to create a workspace from a repository
+---
+
+Codewire can analyze a repository and automatically configure a workspace with the right language, framework, and dependencies.
+
+## Prerequisites
+
+- At least one **Running** Coder resource in your organization
+- For private repositories, [connect GitHub](/organizations/secrets) first (set a GitHub Token in org secrets)
+
+## Launch from the dashboard
+
+1. Navigate to your organization in the sidebar
+2. Click **Launch** in the org's quick links
+3. Enter a **repository URL** (e.g., `github.com/your-org/your-repo`)
+4. Optionally specify a **branch** (defaults to the repo's default branch)
+5. Click **Analyze**
+
+### Review detection results
+
+AI analyzes your repository and detects:
+
+- **Language** — Go, Python, TypeScript, Rust, etc.
+- **Framework** — Next.js, Django, Rails, etc.
+- **Docker** — Dockerfile or docker-compose presence
+- **Services** — databases, caches, and other dependencies
+
+Review the results and adjust if needed before launching.
+
+### Advanced options
+
+Expand the advanced section to customize:
+
+| Option | Values | Description |
+|--------|--------|-------------|
+| **Template image** | DinD, Desktop, OpenClaw | Base workspace template |
+| **CPU** | 2, 4, 8, 16 cores | CPU allocation |
+| **Memory** | 4, 8, 16, 32 GB | Memory allocation |
+| **Install command** | Custom | Override the detected install command |
+| **Startup script** | Custom | Script to run on workspace start |
+
+### Select resource and launch
+
+1. If you have multiple Coder resources, select which one to create the workspace on
+2. Click **Launch Workspace**
+3. You'll be redirected to the workspace as it starts up
+
+## Launch from the CLI
+
+```bash
+cw launch github.com/your-org/your-repo
+```
+
+The CLI runs the same AI detection and creates the workspace. Pass `.` to use the current directory's remote.
+
+```bash
+cw launch .
+cw launch github.com/your-org/your-repo --branch feature/new-api
+```
+
+See [Platform commands](/cli/platform) for the full `cw launch` reference.
+
+## What's next?
+
+<CardGroup cols={2}>
+  <Card title="Manage workspaces" icon="code" href="/workspaces/manage-workspaces">
+    Connect to and manage your running workspaces.
+  </Card>
+  <Card title="Org secrets" icon="key" href="/organizations/secrets">
+    Configure GitHub tokens and API keys for your org.
+  </Card>
+</CardGroup>

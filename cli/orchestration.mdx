@@ -12,8 +12,8 @@ CodeWire provides structured coordination primitives for LLM-driven multi-agent 
 Label sessions at launch for filtering and coordination.
 
 ```bash
-cw launch --tag worker --tag build -- claude -p "fix tests"
-cw launch --tag worker --tag lint -- claude -p "fix lint issues"
+cw run --tag worker --tag build -- claude -p "fix tests"
+cw run --tag worker --tag lint -- claude -p "fix lint issues"
 cw kill --tag worker          # kill all workers
 ```
 
@@ -71,9 +71,9 @@ cw wait --tag worker --condition any --timeout 60 # ANY, 60s timeout
 One orchestrator launches and waits on tagged worker sessions.
 
 ```bash
-# Launch tagged workers
-cw launch --tag worker -- claude -p "implement feature X"
-cw launch --tag worker -- claude -p "write tests for X"
+# Run tagged workers
+cw run --tag worker -- claude -p "implement feature X"
+cw run --tag worker -- claude -p "write tests for X"
 
 # Wait for all to complete
 cw wait --tag worker --condition all --timeout 300

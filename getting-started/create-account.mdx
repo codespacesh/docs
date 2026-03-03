@@ -37,6 +37,19 @@ After signing up, you'll receive a verification email. Click the link to activat
 - Use the **Resend verification email** option on the login page
 - Make sure you entered the correct email address during signup
 
+## Set up two-factor authentication
+
+After verifying your email and signing in, you'll be redirected to `/setup-2fa` to configure two-factor authentication. **2FA is mandatory** — you cannot access the dashboard without it.
+
+1. Open your authenticator app (Google Authenticator, Authy, 1Password, etc.)
+2. Scan the QR code or enter the manual key
+3. Enter the **6-digit code** from your authenticator to verify
+4. **Save your backup codes** — you'll receive 10 one-time codes
+
+<Warning>
+  Backup codes are shown only once. Save them in a secure location. If you lose access to your authenticator app, backup codes are the only way to sign in.
+</Warning>
+
 ## What's next?
 
-Once your email is verified, [sign in](/getting-started/sign-in) and [create your first resource](/getting-started/create-your-first-resource).
+Once 2FA is set up, you'll be taken to the dashboard to [create your first organization](/getting-started/create-organization).

@@ -7,7 +7,7 @@ description: Config file, environment variables, and data directory layout.
 
 ## Config File
 
-Located at `~/.codewire/config.toml`.
+Located at `~/.codewire/config.toml`. Used for standalone mode (node, relay, sessions).
 
 ```toml
 [node]
@@ -16,6 +16,15 @@ listen = "0.0.0.0:9100"                   # Direct WebSocket (optional)
 external_url = "wss://host/ws"            # Advertised URL
 relay_url = "https://relay.codewire.sh"   # Opt-in remote access
 ```
+
+## Platform Config
+
+Platform mode stores its configuration separately in `~/.codewire/`:
+
+- `platform.json` — server URL, auth tokens, selected org/resource
+- Created automatically by `cw setup`
+
+Platform config is independent of the standalone config — you can use both modes simultaneously.
 
 ## Environment Variables
 
@@ -38,7 +47,8 @@ Environment variables override config file values.
 |-- codewire.sock         # Unix domain socket
 |-- codewire.pid          # Node PID file
 |-- token                 # Auth token (direct WS fallback)
-|-- config.toml           # Configuration
+|-- config.toml           # Standalone configuration
+|-- platform.json         # Platform mode configuration
 |-- servers.toml          # Saved remote servers
 |-- sessions.json         # Session metadata
 `-- sessions/

@@ -3,66 +3,81 @@ title: Resource dashboard
 description: Understanding the resource detail page
 ---
 
-The resource dashboard shows everything about a specific resource. Access it by clicking a resource card on the organization dashboard.
+The resource dashboard shows everything about a specific resource. Access it by clicking a resource card on the organization dashboard or expanding a resource in the sidebar.
 
-## Header
+## Layout
 
-The top of the page shows:
+The resource detail page uses a two-column layout.
 
-- **Resource name** and status badge
-- **Open Coder** button — opens your Coder dashboard at `subdomain.codewire.sh` (visible when running)
-- **Delete** button — owner only, with confirmation dialog
+### Left column
 
-## Instance Details card
+#### Instance details
 
 | Field | Description |
 |-------|-------------|
+| **Type** | Coder or Codewire Relay |
 | **Domain** | Your resource URL (`subdomain.codewire.sh`) |
-| **Coder version** | Currently deployed version |
+| **Coder version** | Currently deployed version (Coder resources) |
+| **Slug** | Resource identifier |
 | **Created** | When the resource was created |
 | **Last updated** | Most recent status change |
+| **Health status** | Current health check result |
+| **Retry count** | Number of provision retries (if any) |
 
-## Admin credentials
+#### Provision timeline
 
-When your Coder instance is first provisioned, CodeWire generates admin credentials for the Coder dashboard:
+A visual timeline showing each provisioning step and its status. More detailed than the Events tab — shows progress inline on the detail page.
+
+#### Provisioning errors
+
+If provisioning failed, error details are displayed inline with the timeline.
+
+#### Workspaces table
+
+Lists all workspaces in this resource with name, owner, and status. Click a workspace to open its detail page.
+
+### Right column
+
+#### Admin credentials (Coder resources, owner only)
+
+When your Coder instance is provisioned, Codewire generates admin credentials:
 
 - **Username** — the admin account name
 - **Email** — the admin email address
-- **Password** — the initial admin password
+- **Password** — the initial admin password (hidden by default, click to reveal)
 
-Each field has a **copy** button. The password is hidden by default — click the eye icon to reveal it.
+Each field has a **copy** button.
 
 <Warning>
   Save these credentials somewhere safe. You'll need them to sign in to Coder for the first time.
 </Warning>
 
-## Activity tabs
+#### Relay connection details (Codewire Relay, owner only)
 
-### Workspaces tab
+For relay resources, the right column shows:
 
-Lists all workspaces running in this Coder instance. Each entry shows:
+- **Relay URL** — the address your agents connect to (show/hide + copy)
+- **Auth token** — authentication token (show/hide + copy)
+- **Quick setup** — `cw setup <url>` command shown for easy CLI connection
 
-- Workspace name and owner
-- Current status (running, stopped, etc.)
-- Click to view the [workspace detail page](/workspaces/manage-workspaces)
+#### Usage summary
 
-### Events tab
+Resource usage with progress bars:
 
-A timeline of provisioning events. Each event shows:
+- **CPU hours** — compute time consumed vs allocation
+- **Memory hours** — memory usage vs allocation
+- **Disk hours** — storage usage vs allocation
 
-- Timestamp and event type
-- Status indicator (green = completed, red = failed, yellow = in progress)
-- Expandable details with infrastructure change information
-- Resource badges showing what was created (+), updated (~), or deleted (-)
+## Quick actions
 
-## Quick actions sidebar
+Context-aware actions based on resource state and your role:
 
-Context-aware actions based on resource state:
-
-| Action | When available |
-|--------|---------------|
-| **Open Coder Dashboard** | Resource is running |
-| **Settings & Limits** | Always |
-| **Upgrade Coder** | New version available |
-| **Force Reprovision** | Resource is running |
-| **Retry Provisioning** | Provisioning failed |
+| Action | When available | Role required |
+|--------|---------------|---------------|
+| **Open Coder** | Resource is running | Any |
+| **Restart** | Resource is running | Owner or admin |
+| **Sync Configuration** | Always | Owner or admin |
+| **Upgrade** | New Coder version available | Owner or admin |
+| **Retry** | Provisioning failed | Owner or admin |
+| **Force Reprovision** | Resource is running | Owner or admin |
+| **Delete** | Always | Owner only |

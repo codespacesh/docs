@@ -1,0 +1,252 @@
+---
+title: Platform Commands
+description: CLI commands for codewire.sh integration — workspaces, orgs, resources, and more.
+---
+
+# Platform Commands
+
+Platform mode connects the CLI to codewire.sh for workspace management, org administration, and remote access. All platform commands require authentication via `cw setup` or `cw login`.
+
+## Setup
+
+### setup
+
+Interactive wizard that configures platform mode. Walks you through server URL, login, org selection, resource selection, and GitHub connection.
+
+```bash
+cw setup
+```
+
+Run this once to get started. Your configuration is saved to `~/.codewire/platform.json`.
+
+## Authentication
+
+### login
+
+Authenticate with the Codewire platform.
+
+```bash
+cw login
+```
+
+### logout
+
+Sign out and clear stored credentials.
+
+```bash
+cw logout
+```
+
+### whoami
+
+Show the currently authenticated user.
+
+```bash
+cw whoami
+```
+
+## Organizations
+
+### orgs list
+
+List all organizations you belong to.
+
+```bash
+cw orgs list
+```
+
+### orgs create
+
+Create a new organization.
+
+```bash
+cw orgs create <name> --slug <slug>
+```
+
+### orgs delete
+
+Delete an organization (owner only).
+
+```bash
+cw orgs delete <slug>
+```
+
+### orgs invite
+
+Invite a member to an organization.
+
+```bash
+cw orgs invite <email> [--org <slug>] [--role <role>]
+```
+
+## Resources
+
+### resources list
+
+List resources in the current organization.
+
+```bash
+cw resources list [--org <slug>]
+```
+
+### resources get
+
+Show details for a specific resource.
+
+```bash
+cw resources get <slug> [--org <slug>]
+```
+
+### resources create
+
+Create a new resource.
+
+```bash
+cw resources create <slug> --type <coder|relay> --plan <plan> [--org <slug>]
+```
+
+### resources delete
+
+Delete a resource (owner or admin only).
+
+```bash
+cw resources delete <slug> [--org <slug>]
+```
+
+## Workspaces
+
+### launch
+
+Create a workspace from a repository URL. AI analyzes the repo to detect language, framework, Docker configuration, and services.
+
+```bash
+cw launch <repo-url|.> [--branch <branch>] [--resource <slug>] [--org <slug>]
+```
+
+Pass `.` to use the current directory's remote URL.
+
+```bash
+cw launch github.com/your-org/your-repo
+cw launch . --branch feature/new-api
+```
+
+### workspaces
+
+List workspaces across your resources.
+
+```bash
+cw workspaces [--org <slug>] [--resource <slug>]
+```
+
+### open
+
+Open a workspace in your browser or connect via SSH.
+
+```bash
+cw open [workspace]
+```
+
+### start / stop
+
+Start or stop a workspace.
+
+```bash
+cw start [workspace]
+cw stop [workspace]
+```
+
+## Running Commands
+
+### run (platform mode)
+
+In platform mode, `cw run` SSHs into a workspace and runs a command in a persistent session.
+
+```bash
+cw run [name] -- <command> [args...]
+```
+
+```bash
+cw run -- claude "fix the tests"
+cw run worker --tag build -- make test
+```
+
+<Note>
+  In standalone mode, `cw run` creates a local PTY session. In platform mode, it connects to a workspace first. See [Sessions](/cli/sessions) for standalone session management.
+</Note>
+
+## Secrets
+
+### secrets
+
+Manage organization secrets from the CLI.
+
+```bash
+cw secrets [--org <slug>]
+```
+
+## Billing & Cost
+
+### cost
+
+View resource usage and cost estimates.
+
+```bash
+cw cost [--org <slug>]
+```
+
+### billing
+
+Open the billing portal.
+
+```bash
+cw billing [--org <slug>]
+```
+
+## GitHub
+
+### github login
+
+Authenticate with GitHub for private repo access.
+
+```bash
+cw github login
+```
+
+### github logout
+
+Remove stored GitHub credentials.
+
+```bash
+cw github logout
+```
+
+### github status
+
+Check GitHub authentication status.
+
+```bash
+cw github status
+```
+
+## Utilities
+
+### update
+
+Update the CLI to the latest version.
+
+```bash
+cw update
+```
+
+### completion
+
+Generate shell completions.
+
+```bash
+cw completion <bash|zsh|fish>
+```
+
+```bash
+# Add to your shell profile
+eval "$(cw completion zsh)"
+```
